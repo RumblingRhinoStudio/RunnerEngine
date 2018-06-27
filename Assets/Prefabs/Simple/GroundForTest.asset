@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adbf4edadb378514f8628db60975a8f6, type: 3}
+  m_Name: GroundForTest
+  m_EditorClassIdentifier: 
+  Grounds:
+  - {fileID: 11400000, guid: efb39b73827733f40873fdd65729b801, type: 2}
+  - {fileID: 11400000, guid: 49a4cd2d820acd24fa1c79a90f356695, type: 2}
+  - {fileID: 11400000, guid: c0f50d1d38f2fc0409734d009c3d6f90, type: 2}
+  - {fileID: 11400000, guid: 51555cf486ea0b44c95e0288fb3dcf27, type: 2}
+  - {fileID: 11400000, guid: bbc3fa7a0acfd824aad76051b5bbd52a, type: 2}
+  - {fileID: 11400000, guid: fa2f0b8862914f948a7994ec2ea70465, type: 2}
+  - {fileID: 11400000, guid: 00c1910b23fd29c4da018ec7a53de9c7, type: 2}
