@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
+using Random = UnityEngine.Random;
+using UnityEngine.AI;
 
 public class LevelManager : MonoBehaviour
 {
@@ -9,15 +12,25 @@ public class LevelManager : MonoBehaviour
     public int LevelMatrixHeight;
     [Tooltip("0 based index.")]
     public int LevelMatrixRoadLane;
+    public int DifficultyMinLength;
+    public int DifficultyMaxLength;
+
 
     public GroundList GroundObjects;
     public RoadList RoadObjects;
-    
+    public DividerList DividerObjects;
+
     private List<GameObject> groundObjectsInUse = new List<GameObject>();
     private List<GameObject> roadObjectsInUse = new List<GameObject>();
+    private List<GameObject> dividersInUse = new List<GameObject>();
     private Transform playerTransform;
     private bool placingGround = false;
     private int biggestBlockHeight = 0;
+    private int currentDifficultySize;
+    private int currentDifficultyTargetSize;
+
+    private Transform levelParentTransform;
+    private NavMeshSurface levelNavMeshSurface;
 
     private float lastRowPlacedZ = 0;
 
@@ -27,6 +40,10 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        GameObject Level = GameObject.FindGameObjectWithTag("Level");
+        levelParentTransform = Level.transform;
+        levelNavMeshSurface = Level.GetComponent<NavMeshSurface>();
+
         foreach (Ground ground in GroundObjects.Grounds)
         {
             ground.Initialise();
@@ -39,6 +56,11 @@ public class LevelManager : MonoBehaviour
         {
             road.Initialise();
         }
+        foreach (Divider divider in DividerObjects.Dividers)
+        {
+            divider.Initialise();
+        }
+        currentDifficultyTargetSize = getNewDifficultyLevelLength();
         placeGround();
     }
 
@@ -55,12 +77,13 @@ public class LevelManager : MonoBehaviour
         if (!placingGround && (levelBlocks == null || playerTransform.position.z >= lastRowPlacedZ))
         {
             placingGround = true;
-            GroundBlock[,] levelBlocksTemp = new GroundBlock[LevelMatrixWidth, LevelMatrixHeight];
+            int currentIterationHeight = Math.Min(LevelMatrixHeight, currentDifficultyTargetSize - currentDifficultySize);
+            GroundBlock[,] levelBlocksTemp = new GroundBlock[LevelMatrixWidth, currentIterationHeight];
             int currentMatrixLevel = 0;
 
             int currentMatrixRoadLevel = currentMatrixLevel;
             float lastPlacedRoadRowZ = lastRowPlacedZ;
-            while (levelBlocksTemp[LevelMatrixRoadLane, LevelMatrixHeight - 1] == null)
+            while (levelBlocksTemp[LevelMatrixRoadLane, currentIterationHeight - 1] == null)
             {
                 // Figure out what size road we are going for
                 int emptySpacesLeft = 0;
@@ -79,9 +102,9 @@ public class LevelManager : MonoBehaviour
                 }
 
                 // Find fitting road block and instantiate it TODO: Object pooling?
-                Road toPlace = findFittingRoad(emptySpacesLeft, emptySpacesRight, LevelMatrixHeight - currentMatrixRoadLevel);
+                Road toPlace = findFittingRoad(emptySpacesLeft, emptySpacesRight, currentIterationHeight - currentMatrixRoadLevel);
                 GameObject placedGround = Instantiate(toPlace.Prefab);
-                placedGround.transform.parent = this.transform;
+                placedGround.transform.parent = levelParentTransform;
 
                 placedGround.transform.position = new Vector3(placedGround.transform.position.x, 0, lastPlacedRoadRowZ + 10);
 
@@ -102,14 +125,14 @@ public class LevelManager : MonoBehaviour
             }
 
             // Fill out the rest of the matrix
-            while (currentMatrixLevel < LevelMatrixHeight)
+            while (currentMatrixLevel < currentIterationHeight)
             {
                 // Find first empty cell
                 bool emptyCellFound = false;
                 int column = 0;
                 int row = currentMatrixLevel;
                 // Iterate through all rows
-                for (; row < LevelMatrixHeight; row++)
+                for (; row < currentIterationHeight; row++)
                 {
                     column = 0;
                     // Iterate over each cell in the current row
@@ -139,7 +162,7 @@ public class LevelManager : MonoBehaviour
                 int maxWidth = LevelMatrixWidth - column;
                 int maxHeight = 0;
                 bool done = false;
-                for (int j = row; j < Mathf.Min(biggestBlockHeight + row, LevelMatrixHeight); j++)
+                for (int j = row; j < Mathf.Min(biggestBlockHeight + row, currentIterationHeight); j++)
                 {
                     int rowWidth = 0;
                     for (int i = column; i < LevelMatrixWidth; i++)
@@ -199,7 +222,7 @@ public class LevelManager : MonoBehaviour
 
                 // Instantiate gameObject TODO : Object pooling?
                 GameObject placedGround = Instantiate(groundToPlace.Prefab);
-                placedGround.transform.parent = this.transform;
+                placedGround.transform.parent = levelParentTransform;
                 int chosenRotation = possibleRotations[Random.Range(0, possibleRotations.Count)];
                 switch (chosenRotation)
                 {
@@ -245,15 +268,36 @@ public class LevelManager : MonoBehaviour
                 for (int i = 0; i < groundBlocksUsed.GetLength(0); i++)
                 {
                     for (int j = 0; j < groundBlocksUsed.GetLength(1); j++)
-                    {                        
+                    {
                         levelBlocksTemp[column + i, row + j] = groundBlocksUsed[i, j];
                     }
                 }
             }
 
             levelBlocks = levelBlocksTemp;
-            lastRowPlacedZ += levelBlocks.GetLength(1) * 10;
+            int levelBlocksHeight = levelBlocks.GetLength(1);
+            lastRowPlacedZ += levelBlocksHeight * 10;
+            currentDifficultySize += levelBlocksHeight;
+
+            if (currentDifficultySize == currentDifficultyTargetSize)
+            {
+                placeDivider();
+                currentDifficultySize = 0;
+                currentDifficultyTargetSize = getNewDifficultyLevelLength();
+            }
+            levelNavMeshSurface.BuildNavMesh();
             placingGround = false;
+        }
+    }
+
+    private void placeDivider()
+    {
+        if (DividerObjects.Dividers.Any())
+        {
+            Divider dividerToPlace = DividerObjects.Dividers[Random.Range(0, DividerObjects.Dividers.Length)];
+            GameObject divider = Instantiate(dividerToPlace.Prefab);
+            divider.transform.position = new Vector3(divider.transform.position.x, 0, lastRowPlacedZ + 10);
+            lastRowPlacedZ += dividerToPlace.Height * 10;
         }
     }
 
@@ -277,5 +321,10 @@ public class LevelManager : MonoBehaviour
         if (!usableRoads.Any()) return null;
 
         return usableRoads[Random.Range(0, usableRoads.Length)];
-    }    
+    }
+
+    private int getNewDifficultyLevelLength()
+    {
+        return Random.Range(DifficultyMinLength, DifficultyMaxLength);
+    }
 }
