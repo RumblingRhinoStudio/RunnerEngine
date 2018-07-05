@@ -8,21 +8,29 @@ using UnityEngine.AI;
 
 public class LevelManager : MonoBehaviour
 {
+    [Header("Level generation settings")]
     public int LevelMatrixWidth;
     public int LevelMatrixHeight;
     [Tooltip("0 based index.")]
     public int LevelMatrixRoadLane;
+    public int RowsLeftBeforeNextPart;
     public int DifficultyMinLength;
     public int DifficultyMaxLength;
+    public int MinRowsNoSideRoads;
 
+    [Header("Variables")]
+    public FloatReference Difficulty;
 
+    [Header("Building blocks")]
     public GroundList GroundObjects;
     public RoadList RoadObjects;
     public DividerList DividerObjects;
+    public EnemyList EnemyObjects;
 
     private List<GameObject> groundObjectsInUse = new List<GameObject>();
     private List<GameObject> roadObjectsInUse = new List<GameObject>();
     private List<GameObject> dividersInUse = new List<GameObject>();
+    private List<GameObject> enemiesInUse = new List<GameObject>();
     private Transform playerTransform;
     private bool placingGround = false;
     private int biggestBlockHeight = 0;
@@ -74,7 +82,7 @@ public class LevelManager : MonoBehaviour
     private void placeGround()
     {
         // TODO : Change if to build next part of level sooner
-        if (!placingGround && (levelBlocks == null || playerTransform.position.z >= lastRowPlacedZ))
+        if (!placingGround && (levelBlocks == null || playerTransform.position.z >= lastRowPlacedZ - (RowsLeftBeforeNextPart * 10)))
         {
             placingGround = true;
             int currentIterationHeight = Math.Min(LevelMatrixHeight, currentDifficultyTargetSize - currentDifficultySize);
@@ -83,6 +91,7 @@ public class LevelManager : MonoBehaviour
 
             int currentMatrixRoadLevel = currentMatrixLevel;
             float lastPlacedRoadRowZ = lastRowPlacedZ;
+            int rowsSinceLastSideRoad = 0;
             while (levelBlocksTemp[LevelMatrixRoadLane, currentIterationHeight - 1] == null)
             {
                 // Figure out what size road we are going for
@@ -102,7 +111,7 @@ public class LevelManager : MonoBehaviour
                 }
 
                 // Find fitting road block and instantiate it TODO: Object pooling?
-                Road toPlace = findFittingRoad(emptySpacesLeft, emptySpacesRight, currentIterationHeight - currentMatrixRoadLevel);
+                Road toPlace = findFittingRoad(emptySpacesLeft, emptySpacesRight, currentIterationHeight - currentMatrixRoadLevel, rowsSinceLastSideRoad);
                 GameObject placedGround = Instantiate(toPlace.Prefab);
                 placedGround.transform.parent = levelParentTransform;
 
@@ -119,6 +128,15 @@ public class LevelManager : MonoBehaviour
                     {
                         levelBlocksTemp[LevelMatrixRoadLane - toPlace.IndexAnchorStart.Item1 + i, j + currentMatrixRoadLevel] = toPlace.Pieces[i, j];
                     }
+                }
+
+                if (toPlace.Width > 1)
+                {
+                    rowsSinceLastSideRoad = 0;
+                }
+                else
+                {
+                    rowsSinceLastSideRoad += toPlace.Height;
                 }
 
                 currentMatrixRoadLevel += toPlace.IndexAnchorEnd.Item2 + 1;
@@ -312,11 +330,11 @@ public class LevelManager : MonoBehaviour
         return usableGrounds[Random.Range(0, usableGrounds.Length)];
     }
 
-    private Road findFittingRoad(int spacesLeft, int spacesRight, int maxHeight)
+    private Road findFittingRoad(int spacesLeft, int spacesRight, int maxHeight, int rowsSinceLastSideRoad)
     {
         Road[] usableRoads = RoadObjects.Roads
                                .Where(x => x.IndexAnchorStart.Item1 <= spacesLeft
-                                        && x.Width <= spacesLeft - (spacesLeft - x.IndexAnchorStart.Item1) + 1 + spacesRight
+                                        && x.Width <= (rowsSinceLastSideRoad >= MinRowsNoSideRoads ? spacesLeft - (spacesLeft - x.IndexAnchorStart.Item1) + 1 + spacesRight : 1)
                                         && x.Height <= maxHeight).ToArray();
         if (!usableRoads.Any()) return null;
 

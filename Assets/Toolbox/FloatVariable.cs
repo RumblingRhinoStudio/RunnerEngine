@@ -6,7 +6,7 @@ using UnityEngine;
 public class FloatVariable : ScriptableObject
 {
 #if UNITY_EDITOR
-    [Multiline]
+    [TextArea]
     public string DeveloperDescription = "";
 #endif
     public float Value;
