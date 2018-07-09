@@ -235,12 +235,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LevelMatrixWidth: 9
-  LevelMatrixHeight: 50
+  LevelMatrixHeight: 20
   LevelMatrixRoadLane: 4
   RowsLeftBeforeNextPart: 3
-  DifficultyMinLength: 26
-  DifficultyMaxLength: 39
+  DifficultyMinLength: 10
+  DifficultyMaxLength: 10
   MinRowsNoSideRoads: 4
+  RowsBeforeEnemies: 5
+  EnemiesPerDifficulty: 10
   Difficulty:
     UseConstant: 0
     ConstantValue: 0
@@ -248,7 +250,7 @@ MonoBehaviour:
   GroundObjects: {fileID: 11400000, guid: e47e8e9c97dc3e4428f9c5f011426d2f, type: 2}
   RoadObjects: {fileID: 11400000, guid: 43823982f019e0d4184a32a34151c5b7, type: 2}
   DividerObjects: {fileID: 11400000, guid: a41aa479e0ac5ea49b50e8f9dbf7e3ea, type: 2}
-  EnemyObjects: {fileID: 0}
+  EnemyObjects: {fileID: 11400000, guid: c23f1bd44f1521045a88b9a00eaaa7be, type: 2}
 --- !u!4 &1223293135
 Transform:
   m_ObjectHideFlags: 0
