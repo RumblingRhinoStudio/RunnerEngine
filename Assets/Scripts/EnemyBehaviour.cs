@@ -4,25 +4,17 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    public float Life = 1;
-    public float Speed = 10;
+    [ReadOnly]
+    public float Health;
+    [ReadOnly]
+    public float Damage;
+    [ReadOnly]
+    public float Speed;
 
-    // Use this for initialization
-    void Start()
+    public void TakeDamage(float damage)
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public void Damage(float damage)
-    {
-        Life -= damage;
-        if (Life <= 0)
+        Health -= damage;
+        if (Health <= 0)
         {
             // Die
             Destroy(gameObject);

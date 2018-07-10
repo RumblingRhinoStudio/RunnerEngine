@@ -18,8 +18,13 @@ public class LevelManager : MonoBehaviour
     public int DifficultyMinLength;
     public int DifficultyMaxLength;
     public int MinRowsNoSideRoads;
+
+    [Header("Enemy settings")]
     public int RowsBeforeEnemies;
     public int EnemiesPerDifficulty;
+    public DifficultyFormula HealthFormula;
+    public DifficultyFormula DamageFormula;
+    public DifficultyFormula SpeedFormula;
 
     [Header("Variables")]
     public FloatReference Difficulty;
@@ -263,26 +268,13 @@ public class LevelManager : MonoBehaviour
                         placedGround.transform.position = new Vector3((column - LevelMatrixRoadLane + groundToPlace.Height - 1) * 10, 0, lastRowPlacedZ + (row + 1 + groundToPlace.IndexCenter.Item1) * 10);
                         break;
                 }
-                
-                GroundBlock[,] groundBlocksUsed2 = groundToPlace.FillPieces(placedGround);
-                for (int i = 0; i < groundBlocksUsed2.GetLength(0); i++)
+
+                GroundBlock[,] groundBlocksUsed = groundToPlace.FillPieces(placedGround);
+                for (int i = 0; i < groundBlocksUsed.GetLength(0); i++)
                 {
-                    for (int j = 0; j < groundBlocksUsed2.GetLength(1); j++)
+                    for (int j = 0; j < groundBlocksUsed.GetLength(1); j++)
                     {
-                        try
-                        {
-                            if (levelBlocksTemp[column + i, row + j] != null)
-                            {
-                                int hest = 234;
-                            }
-                            levelBlocksTemp[column + i, row + j] = groundBlocksUsed2[i, j];
-
-                        }
-                        catch (Exception)
-                        {
-
-                            throw;
-                        }
+                        levelBlocksTemp[column + i, row + j] = groundBlocksUsed[i, j];
                     }
                 }
             }
@@ -315,7 +307,6 @@ public class LevelManager : MonoBehaviour
 
     private void placeEnemies()
     {
-        // TODO : Make number dynamic
         List<GroundBlock> possibleEnemyLocations = new List<GroundBlock>();
 
         // Columns
@@ -340,6 +331,7 @@ public class LevelManager : MonoBehaviour
                 possibleEnemyLocations.Remove(enemyBlock);
                 Enemy enemyToPlace = findFittingEnemy();
                 GameObject enemy = Instantiate(enemyToPlace.Prefab);
+                enemyToPlace.SetVariablesForDifficultyLevel(enemy.GetComponent<EnemyBehaviour>(), Difficulty, HealthFormula, DamageFormula, SpeedFormula);
                 enemy.transform.position = new Vector3(enemyBlock.transform.position.x, enemy.transform.position.y, enemyBlock.transform.position.z);
             }
             else

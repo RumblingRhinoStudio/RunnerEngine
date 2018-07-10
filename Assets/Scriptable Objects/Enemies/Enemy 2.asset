@@ -8,7 +8,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c84aa879e9167a64dbff4bbe8a46fa0d, type: 3}
+  m_Script: {fileID: 11500000, guid: 85642190dcd3c224d840bba62bbf4a8e, type: 3}
   m_Name: Enemy 2
   m_EditorClassIdentifier: 
   Prefab: {fileID: 1839068848866618, guid: 7baacd62e5b43bb4d8d2c8c988b2731f, type: 2}
+  InitialHealth: 20
+  InitialDamage: 2
+  InitialSpeed: 7

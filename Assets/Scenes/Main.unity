@@ -243,13 +243,16 @@ MonoBehaviour:
   MinRowsNoSideRoads: 4
   RowsBeforeEnemies: 5
   EnemiesPerDifficulty: 10
+  HealthFormula: {fileID: 11400000, guid: 9de4c4e633424f0448a5604a2a42567f, type: 2}
+  DamageFormula: {fileID: 11400000, guid: 7203a13043543b04e9fb0d8399344da3, type: 2}
+  SpeedFormula: {fileID: 11400000, guid: 50a84878e7b970149ba472716e80f2d8, type: 2}
   Difficulty:
     UseConstant: 0
     ConstantValue: 0
-    Variable: {fileID: 11400000, guid: d90e9d671341d724da7359b74db24614, type: 2}
-  GroundObjects: {fileID: 11400000, guid: e47e8e9c97dc3e4428f9c5f011426d2f, type: 2}
+    Variable: {fileID: 11400000, guid: ad1925490aefb144a8ae66646e6506b7, type: 2}
+  GroundObjects: {fileID: 11400000, guid: 1d2a4f0dd5c2a3147a6b484a0e87466b, type: 2}
   RoadObjects: {fileID: 11400000, guid: 43823982f019e0d4184a32a34151c5b7, type: 2}
-  DividerObjects: {fileID: 11400000, guid: a41aa479e0ac5ea49b50e8f9dbf7e3ea, type: 2}
+  DividerObjects: {fileID: 11400000, guid: 3e7d0ac8162e7254c8c4cbfeec3274ae, type: 2}
   EnemyObjects: {fileID: 11400000, guid: c23f1bd44f1521045a88b9a00eaaa7be, type: 2}
 --- !u!4 &1223293135
 Transform:

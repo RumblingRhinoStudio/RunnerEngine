@@ -8,9 +8,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28bca7986c536f54cbacb76ee4046001, type: 3}
+  m_Script: {fileID: 11500000, guid: 1de9eeff0e21ad14ebbaaf24eb6abb9f, type: 3}
   m_Name: EnemiesForTest
   m_EditorClassIdentifier: 
   Enemies:
-  - {fileID: 11400000, guid: 412a8fddb52d2694086eeebdec41f66d, type: 2}
   - {fileID: 11400000, guid: 42df96d0c042ad5448bae19b76aa1ab2, type: 2}
+  - {fileID: 11400000, guid: 412a8fddb52d2694086eeebdec41f66d, type: 2}

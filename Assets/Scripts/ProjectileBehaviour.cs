@@ -37,7 +37,7 @@ public class ProjectileBehaviour : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             EnemyBehaviour enemy = other.GetComponent<EnemyBehaviour>();
-            enemy.Damage(Damage);
+            enemy.TakeDamage(Damage);
             if (!PierceEnemy)
             {
                 Destroy(gameObject);
