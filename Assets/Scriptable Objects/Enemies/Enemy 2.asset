@@ -15,3 +15,6 @@ MonoBehaviour:
   InitialHealth: 20
   InitialDamage: 2
   InitialSpeed: 7
+  HealthFormula: {fileID: 11400000, guid: 9de4c4e633424f0448a5604a2a42567f, type: 2}
+  DamageFormula: {fileID: 11400000, guid: 7203a13043543b04e9fb0d8399344da3, type: 2}
+  SpeedFormula: {fileID: 11400000, guid: 50a84878e7b970149ba472716e80f2d8, type: 2}

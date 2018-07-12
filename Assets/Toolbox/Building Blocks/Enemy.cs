@@ -8,14 +8,17 @@ public class Enemy : ScriptableObject
     public float InitialHealth;
     public float InitialDamage;
     public float InitialSpeed;
+    public DifficultyFormula HealthFormula;
+    public DifficultyFormula DamageFormula;
+    public DifficultyFormula SpeedFormula;
 
-    public void SetVariablesForDifficultyLevel(EnemyBehaviour enemy, FloatReference difficulty, DifficultyFormula healthFormula, DifficultyFormula damageFormula, DifficultyFormula speedFormula)
+    public void SetVariablesForDifficultyLevel(EnemyBehaviour enemy, FloatReference difficulty)
     {
         if (enemy != null)
         {
-            enemy.Health = healthFormula.Calculate(difficulty.Value, InitialHealth);
-            enemy.Damage = damageFormula.Calculate(difficulty.Value, InitialDamage);
-            enemy.Speed = speedFormula.Calculate(difficulty.Value, InitialSpeed);
+            enemy.Health = HealthFormula.Calculate(difficulty.Value, InitialHealth);
+            enemy.Damage = DamageFormula.Calculate(difficulty.Value, InitialDamage);
+            enemy.Speed = SpeedFormula.Calculate(difficulty.Value, InitialSpeed);
         }
     }
 }

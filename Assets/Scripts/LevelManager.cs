@@ -22,9 +22,6 @@ public class LevelManager : MonoBehaviour
     [Header("Enemy settings")]
     public int RowsBeforeEnemies;
     public int EnemiesPerDifficulty;
-    public DifficultyFormula HealthFormula;
-    public DifficultyFormula DamageFormula;
-    public DifficultyFormula SpeedFormula;
 
     [Header("Variables")]
     public FloatReference Difficulty;
@@ -331,7 +328,7 @@ public class LevelManager : MonoBehaviour
                 possibleEnemyLocations.Remove(enemyBlock);
                 Enemy enemyToPlace = findFittingEnemy();
                 GameObject enemy = Instantiate(enemyToPlace.Prefab);
-                enemyToPlace.SetVariablesForDifficultyLevel(enemy.GetComponent<EnemyBehaviour>(), Difficulty, HealthFormula, DamageFormula, SpeedFormula);
+                enemyToPlace.SetVariablesForDifficultyLevel(enemy.GetComponent<EnemyBehaviour>(), Difficulty);
                 enemy.transform.position = new Vector3(enemyBlock.transform.position.x, enemy.transform.position.y, enemyBlock.transform.position.z);
             }
             else
