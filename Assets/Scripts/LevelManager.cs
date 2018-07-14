@@ -36,6 +36,7 @@ public class LevelManager : MonoBehaviour
     private List<GameObject> roadObjectsInUse = new List<GameObject>();
     private List<GameObject> dividersInUse = new List<GameObject>();
     private List<GameObject> enemiesInUse = new List<GameObject>();
+    private List<EnemyBehaviour> idleEnemies = new List<EnemyBehaviour>();
     private Transform playerTransform;
     private bool placingGround = false;
     private int biggestBlockHeight = 0;
@@ -81,6 +82,18 @@ public class LevelManager : MonoBehaviour
     void Update()
     {
         placeGround();
+        if (idleEnemies.Any())
+        {
+            for (int i = idleEnemies.Count - 1; i >= 0; i--)
+            {
+                EnemyBehaviour enemy = idleEnemies[i];
+                if (enemy.PlayerInRange(playerTransform))
+                {
+                    enemy.ChangeToPursuit();
+                    idleEnemies.RemoveAt(i);
+                }
+            }
+        }
         //destroyGround();
     }
 
@@ -280,6 +293,9 @@ public class LevelManager : MonoBehaviour
             int levelBlocksHeight = levelBlocks.GetLength(1);
             lastRowPlacedZ += levelBlocksHeight * 10;
 
+            //Remember to build NavMesh before creating enemies to be able to use Nav Mesh Agent
+            levelNavMeshSurface.BuildNavMesh();
+
             // Place enemies before calculatiung the currentDifficultySize
             if (EnemyObjects.Enemies.Any())
             {
@@ -294,7 +310,6 @@ public class LevelManager : MonoBehaviour
                 currentDifficultySize = 0;
                 currentDifficultyTargetSize = getNewDifficultyLevelLength();
             }
-            levelNavMeshSurface.BuildNavMesh();
 
 
             placingGround = false;
@@ -328,8 +343,10 @@ public class LevelManager : MonoBehaviour
                 possibleEnemyLocations.Remove(enemyBlock);
                 Enemy enemyToPlace = findFittingEnemy();
                 GameObject enemy = Instantiate(enemyToPlace.Prefab);
-                enemyToPlace.SetVariablesForDifficultyLevel(enemy.GetComponent<EnemyBehaviour>(), Difficulty);
+                EnemyBehaviour enemyBehaviour = enemy.GetComponent<EnemyBehaviour>();
+                enemyToPlace.SetVariablesForDifficultyLevel(enemyBehaviour, Difficulty);
                 enemy.transform.position = new Vector3(enemyBlock.transform.position.x, enemy.transform.position.y, enemyBlock.transform.position.z);
+                idleEnemies.Add(enemyBehaviour);
             }
             else
             {

@@ -8,9 +8,12 @@ public class Enemy : ScriptableObject
     public float InitialHealth;
     public float InitialDamage;
     public float InitialSpeed;
+    public float ViewingRange;
     public DifficultyFormula HealthFormula;
     public DifficultyFormula DamageFormula;
     public DifficultyFormula SpeedFormula;
+    public EnemyAI IdleAI;
+    public EnemyAI PursuitAI;
 
     public void SetVariablesForDifficultyLevel(EnemyBehaviour enemy, FloatReference difficulty)
     {
@@ -19,6 +22,10 @@ public class Enemy : ScriptableObject
             enemy.Health = HealthFormula.Calculate(difficulty.Value, InitialHealth);
             enemy.Damage = DamageFormula.Calculate(difficulty.Value, InitialDamage);
             enemy.Speed = SpeedFormula.Calculate(difficulty.Value, InitialSpeed);
+            enemy.ViewingRange = ViewingRange;
+            enemy.AIIdle = IdleAI;
+            enemy.AIPursuit = PursuitAI;
+            enemy.AICurrent = IdleAI;
         }
     }
 }
