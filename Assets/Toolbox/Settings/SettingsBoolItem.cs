@@ -8,21 +8,15 @@ using System.Collections;
  * - Select the type of setting (checkbox, slider, etc.)
  */
 
-[CreateAssetMenu(fileName = "Settings Item", menuName = "Settings/Settings Item", order = 0)]
-public class SettingsItem : ScriptableObject
+[CreateAssetMenu(fileName = "Settings Item", menuName = "Settings/Settings Bool Item", order = 0)]
+public class SettingsBoolItem : SettingsItem
 {
-    [SerializeField]
-    private string _name;
-    public string Name { 
-        get { return _name; }
-        set { _name = value; }
-    }
 
     [SerializeField]
     private FloatReference _value;
-    public FloatReference Value { 
+    public FloatReference Value
+    {
         get { return _value; }
     }
-
 
 }

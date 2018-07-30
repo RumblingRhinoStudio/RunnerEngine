@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ac9fadfa9e24938acc54606ecc8b9b, type: 3}
+  m_Name: SFX Volume Settings Item
+  m_EditorClassIdentifier: 
+  _name: SFX
+  _database: {fileID: 11400000, guid: b353fd44bf6294fa593fff625f438760, type: 2}
+  _databaseKeyName: SFX_VOLUME_SETTING
+  valueChangedEvent: {fileID: 11400000, guid: ed460734076634e75b914d1ade709e67, type: 2}
+  valueLoadedEvent: {fileID: 11400000, guid: 79073b74b1eb0406696bca4d921e0117, type: 2}
+  _value:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: ec9783418ae1e4e2ab42061d17f02088, type: 2}

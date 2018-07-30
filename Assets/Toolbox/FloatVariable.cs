@@ -5,10 +5,13 @@ using UnityEngine;
 [CreateAssetMenu]
 public class FloatVariable : ScriptableObject
 {
-#if UNITY_EDITOR
+    #if UNITY_EDITOR
+
     [TextArea]
     public string DeveloperDescription = "";
-#endif
+
+    #endif
+
     public float Value;
 
     public void SetValue(float value)
@@ -30,4 +33,5 @@ public class FloatVariable : ScriptableObject
     {
         Value += amount.Value;
     }
+
 }
