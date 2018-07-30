@@ -1916,9 +1916,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1750100422718884}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 0
@@ -1930,9 +1931,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1130853823933406}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 0
@@ -1944,9 +1946,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1884011756365452}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 0
@@ -1958,12 +1961,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1103193467704972}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
-  CenterPoint: 0
+  CenterPoint: 1
 --- !u!114 &114269547669774642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1972,9 +1976,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1128182824169768}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 0
@@ -1986,9 +1991,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1998864170664444}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 0
@@ -2000,9 +2006,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1232035469177200}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 0
@@ -2014,9 +2021,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1742893752656898}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 0
@@ -2028,9 +2036,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1821490163057944}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 0
@@ -2042,9 +2051,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1855941421591868}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 0
@@ -2056,9 +2066,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1683376239876846}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 0
@@ -2070,9 +2081,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1242981898694172}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 0
@@ -2084,9 +2096,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1189582196377664}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 0
@@ -2098,9 +2111,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1637279639056988}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 0
@@ -2112,9 +2126,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1463270375619156}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 0
@@ -2126,9 +2141,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1468202214777676}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 0
@@ -2155,9 +2171,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1258631669146858}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 0
@@ -2169,9 +2186,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1760451194359208}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 0
@@ -2183,9 +2201,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1436496602382240}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 0
@@ -2197,9 +2216,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1863142611344128}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 0

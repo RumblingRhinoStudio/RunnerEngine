@@ -14,8 +14,7 @@ MonoBehaviour:
   _name: SFX
   _database: {fileID: 11400000, guid: b353fd44bf6294fa593fff625f438760, type: 2}
   _databaseKeyName: SFX_VOLUME_SETTING
-  valueChangedEvent: {fileID: 11400000, guid: ed460734076634e75b914d1ade709e67, type: 2}
-  valueLoadedEvent: {fileID: 11400000, guid: 79073b74b1eb0406696bca4d921e0117, type: 2}
+  valueChangedEvent: {fileID: 11400000, guid: 401b5d27354d4487f8f051ffdd696828, type: 2}
   _value:
     UseConstant: 0
     ConstantValue: 0

@@ -43,8 +43,5 @@ public class SettingsItem : ScriptableObject
     [SerializeField]
     protected GameEvent valueChangedEvent;
 
-    [SerializeField]
-    protected GameEvent valueLoadedEvent;
-
     #endregion
 }

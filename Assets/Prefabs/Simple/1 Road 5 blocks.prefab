@@ -249,6 +249,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 397fbfd15cadc0c4f9cf57600143568d, type: 2}
   m_StaticBatchInfo:
@@ -283,6 +284,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 17ffb66c8f088ab42bae88e9cff09ee3, type: 2}
   m_StaticBatchInfo:
@@ -317,6 +319,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 17ffb66c8f088ab42bae88e9cff09ee3, type: 2}
   m_StaticBatchInfo:
@@ -351,6 +354,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 17ffb66c8f088ab42bae88e9cff09ee3, type: 2}
   m_StaticBatchInfo:
@@ -385,6 +389,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 17ffb66c8f088ab42bae88e9cff09ee3, type: 2}
   m_StaticBatchInfo:
@@ -419,6 +424,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 17ffb66c8f088ab42bae88e9cff09ee3, type: 2}
   m_StaticBatchInfo:
@@ -574,9 +580,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1411256457381198}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 0
@@ -588,9 +595,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1223019639048108}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 0
@@ -602,11 +610,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1205600585382040}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoadAnchorStart: 1
-  RoadAnchorEnd: 1
+  CanHoldEnemy: 0
+  RoadAnchorStart: 0
+  RoadAnchorEnd: 0
   CenterPoint: 0
 --- !u!114 &114773625630398734
 MonoBehaviour:
@@ -616,9 +625,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1393674371682288}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 0
@@ -630,9 +640,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1353263904667458}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 1
   RoadAnchorEnd: 1
   CenterPoint: 0

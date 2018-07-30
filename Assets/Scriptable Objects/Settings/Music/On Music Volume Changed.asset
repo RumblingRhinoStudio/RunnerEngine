@@ -8,6 +8,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c344c716e5e5de946948a16d94d29f5e, type: 3}
+  m_Script: {fileID: 11500000, guid: 18278ce1e198a864aa97312d8f2c89f3, type: 3}
   m_Name: On Music Volume Changed
   m_EditorClassIdentifier: 

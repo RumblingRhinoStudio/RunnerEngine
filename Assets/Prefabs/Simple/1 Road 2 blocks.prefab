@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33556811553257868}
   - component: {fileID: 64810067787886316}
   - component: {fileID: 23548781112252792}
-  - component: {fileID: 114246048884789798}
+  - component: {fileID: 114554791512262582}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -150,6 +150,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 397fbfd15cadc0c4f9cf57600143568d, type: 2}
   m_StaticBatchInfo:
@@ -184,6 +185,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 7335bfa8af0db8543a152e9ca51c19bd, type: 2}
   m_StaticBatchInfo:
@@ -218,6 +220,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 7335bfa8af0db8543a152e9ca51c19bd, type: 2}
   m_StaticBatchInfo:
@@ -302,7 +305,7 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114246048884789798
+--- !u!114 &114554791512262582
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -310,9 +313,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1348812679066948}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 0
@@ -324,9 +328,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1362234684967712}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 1
   RoadAnchorEnd: 1
   CenterPoint: 0

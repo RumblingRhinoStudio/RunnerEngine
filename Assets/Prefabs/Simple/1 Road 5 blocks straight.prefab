@@ -56,7 +56,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4739923882266112}
-  - component: {fileID: 114428146870098130}
   m_Layer: 0
   m_Name: 1 Road 5 blocks straight
   m_TagString: Untagged
@@ -581,9 +580,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1470253793068796}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 0
@@ -595,23 +595,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1942113956034834}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 0
---- !u!114 &114428146870098130
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1434668152457170}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fddf8f044d19944bb650626d80740cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114683709692204070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -620,9 +610,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1235363463796340}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 0
@@ -634,9 +625,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1498512143279964}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 0
@@ -648,9 +640,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1745320536785486}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 1
   RoadAnchorEnd: 1
   CenterPoint: 0

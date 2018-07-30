@@ -5,6 +5,7 @@ using System.Linq;
 using System;
 using Random = UnityEngine.Random;
 using UnityEngine.AI;
+using System.Text;
 
 public class LevelManager : MonoBehaviour
 {
@@ -17,6 +18,10 @@ public class LevelManager : MonoBehaviour
     public int DifficultyMinLength;
     public int DifficultyMaxLength;
     public int MinRowsNoSideRoads;
+
+    [Header("Enemy settings")]
+    public int RowsBeforeEnemies;
+    public int EnemiesPerDifficulty;
 
     [Header("Variables")]
     public FloatReference Difficulty;
@@ -31,6 +36,7 @@ public class LevelManager : MonoBehaviour
     private List<GameObject> roadObjectsInUse = new List<GameObject>();
     private List<GameObject> dividersInUse = new List<GameObject>();
     private List<GameObject> enemiesInUse = new List<GameObject>();
+    private List<EnemyBehaviour> idleEnemies = new List<EnemyBehaviour>();
     private Transform playerTransform;
     private bool placingGround = false;
     private int biggestBlockHeight = 0;
@@ -76,6 +82,18 @@ public class LevelManager : MonoBehaviour
     void Update()
     {
         placeGround();
+        if (idleEnemies.Any())
+        {
+            for (int i = idleEnemies.Count - 1; i >= 0; i--)
+            {
+                EnemyBehaviour enemy = idleEnemies[i];
+                if (enemy.PlayerInRange(playerTransform))
+                {
+                    enemy.ChangeToPursuit();
+                    idleEnemies.RemoveAt(i);
+                }
+            }
+        }
         //destroyGround();
     }
 
@@ -261,28 +279,7 @@ public class LevelManager : MonoBehaviour
                         break;
                 }
 
-
-                // Fill level matrix with new groundblocks
-                GroundBlock[,] groundBlocksUsed;
-                // TODO : Look into making it more effective
-                switch (chosenRotation)
-                {
-                    case 0:
-                        groundBlocksUsed = groundToPlace.Pieces;
-                        break;
-                    case 90:
-                        groundBlocksUsed = Helpers.RotateMatrix90(groundToPlace.Pieces);
-                        break;
-                    case 180:
-                        groundBlocksUsed = Helpers.RotateMatrix180(groundToPlace.Pieces);
-                        break;
-                    case 270:
-                        groundBlocksUsed = Helpers.RotateMatrix270(groundToPlace.Pieces);
-                        break;
-                    default:
-                        groundBlocksUsed = new GroundBlock[0, 0];
-                        break;
-                }
+                GroundBlock[,] groundBlocksUsed = groundToPlace.FillPieces(placedGround);
                 for (int i = 0; i < groundBlocksUsed.GetLength(0); i++)
                 {
                     for (int j = 0; j < groundBlocksUsed.GetLength(1); j++)
@@ -295,6 +292,16 @@ public class LevelManager : MonoBehaviour
             levelBlocks = levelBlocksTemp;
             int levelBlocksHeight = levelBlocks.GetLength(1);
             lastRowPlacedZ += levelBlocksHeight * 10;
+
+            //Remember to build NavMesh before creating enemies to be able to use Nav Mesh Agent
+            levelNavMeshSurface.BuildNavMesh();
+
+            // Place enemies before calculatiung the currentDifficultySize
+            if (EnemyObjects.Enemies.Any())
+            {
+                placeEnemies();
+            }
+
             currentDifficultySize += levelBlocksHeight;
 
             if (currentDifficultySize == currentDifficultyTargetSize)
@@ -303,8 +310,48 @@ public class LevelManager : MonoBehaviour
                 currentDifficultySize = 0;
                 currentDifficultyTargetSize = getNewDifficultyLevelLength();
             }
-            levelNavMeshSurface.BuildNavMesh();
+
+
             placingGround = false;
+
+        }
+    }
+
+    private void placeEnemies()
+    {
+        List<GroundBlock> possibleEnemyLocations = new List<GroundBlock>();
+
+        // Columns
+        for (int i = 0; i < levelBlocks.GetLength(0); i++)
+        {
+            // Rows
+            for (int j = Math.Max(0, RowsBeforeEnemies - currentDifficultySize); j < levelBlocks.GetLength(1); j++)
+            {
+                GroundBlock currentBlock = levelBlocks[i, j];
+                if (currentBlock.CanHoldEnemy)
+                {
+                    possibleEnemyLocations.Add(currentBlock);
+                }
+            }
+        }
+
+        for (int i = 0; i < EnemiesPerDifficulty; i++)
+        {
+            if (possibleEnemyLocations.Any())
+            {
+                GroundBlock enemyBlock = possibleEnemyLocations[Random.Range(0, possibleEnemyLocations.Count)];
+                possibleEnemyLocations.Remove(enemyBlock);
+                Enemy enemyToPlace = findFittingEnemy();
+                GameObject enemy = Instantiate(enemyToPlace.Prefab);
+                EnemyBehaviour enemyBehaviour = enemy.GetComponent<EnemyBehaviour>();
+                enemyToPlace.SetVariablesForDifficultyLevel(enemyBehaviour, Difficulty);
+                enemy.transform.position = new Vector3(enemyBlock.transform.position.x, enemy.transform.position.y, enemyBlock.transform.position.z);
+                idleEnemies.Add(enemyBehaviour);
+            }
+            else
+            {
+                break;
+            }
         }
     }
 
@@ -317,6 +364,12 @@ public class LevelManager : MonoBehaviour
             divider.transform.position = new Vector3(divider.transform.position.x, 0, lastRowPlacedZ + 10);
             lastRowPlacedZ += dividerToPlace.Height * 10;
         }
+    }
+
+    private Enemy findFittingEnemy()
+    {
+        // TODO : Make enemies selected be dependent on difficulty
+        return EnemyObjects.Enemies[Random.Range(0, EnemyObjects.Enemies.Length)];
     }
 
     private Ground findFittingGround(List<Tuple<int, int>> emptyRectangles)

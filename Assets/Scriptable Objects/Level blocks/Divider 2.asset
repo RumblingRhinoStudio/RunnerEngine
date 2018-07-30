@@ -8,7 +8,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6455ad86443222448c535e2b52afa67, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e72740d75f2ad542bfa44080f8bd94e, type: 3}
   m_Name: Divider 2
   m_EditorClassIdentifier: 
   Prefab: {fileID: 1186761695783050, guid: 2e545cb0da725e04891c20d6f70fabe1, type: 2}

@@ -14,9 +14,8 @@ MonoBehaviour:
   _name: Music
   _database: {fileID: 11400000, guid: b353fd44bf6294fa593fff625f438760, type: 2}
   _databaseKeyName: MUSIC_VOLUME_SETTING
-  valueChangedEvent: {fileID: 11400000, guid: 0c916f97a7b0140a0b9d467ce52fb464, type: 2}
-  valueLoadedEvent: {fileID: 11400000, guid: 85c431199322c415f891b7cef35c4dde, type: 2}
+  valueChangedEvent: {fileID: 11400000, guid: 0d6b88f54411d4cb8aabdfdf03840e11, type: 2}
   _value:
     UseConstant: 0
     ConstantValue: 0
-    Variable: {fileID: 11400000, guid: 1f00c92ff8430493b8dc3067afca9814, type: 2}
+    Variable: {fileID: 11400000, guid: b78da50bbe38c4e9c9a3178f9dbacfd1, type: 2}

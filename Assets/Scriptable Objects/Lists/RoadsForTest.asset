@@ -8,7 +8,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e888b046bb4a79e49ba5ab4fccfc013b, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f2cac4593bf3614aab1b8ca773c23f5, type: 3}
   m_Name: RoadsForTest
   m_EditorClassIdentifier: 
   Roads:

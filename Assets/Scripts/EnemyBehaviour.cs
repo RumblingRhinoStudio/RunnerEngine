@@ -1,31 +1,53 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    public float Life = 1;
-    public float Speed = 10;
+    [ReadOnly]
+    public float Health;
+    [ReadOnly]
+    public float Damage;
+    [ReadOnly]
+    public float Speed;
+    [ReadOnly]
+    public float ViewingRange;
 
-    // Use this for initialization
-    void Start()
+    public EnemyAI AIIdle { get; set; }
+    public EnemyAI AIPursuit { get; set; }
+    public EnemyAI AICurrent { get; set; }
+    
+    private float timer;
+    private NavMeshAgent agent;
+
+    public void Start()
     {
-
+        agent = gameObject.GetComponent<NavMeshAgent>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-
+        AICurrent.SetDestination(agent, transform.position);
     }
 
-    public void Damage(float damage)
+    public void TakeDamage(float damage)
     {
-        Life -= damage;
-        if (Life <= 0)
+        Health -= damage;
+        if (Health <= 0)
         {
             // Die
             Destroy(gameObject);
         }
+    }
+
+    public bool PlayerInRange(Transform player)
+    {
+        return false;
+    }
+
+    public void ChangeToPursuit()
+    {
+        AICurrent = AIPursuit;
     }
 }

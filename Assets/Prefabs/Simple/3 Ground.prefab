@@ -486,9 +486,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1581176887062228}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 1
@@ -500,9 +501,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1321992905556700}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 0
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 0
@@ -514,9 +516,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1693224434571606}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2ad9c719aa1942a74f922d8536be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5539d3a45e814ec47845b86324b298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanHoldEnemy: 1
   RoadAnchorStart: 0
   RoadAnchorEnd: 0
   CenterPoint: 0
