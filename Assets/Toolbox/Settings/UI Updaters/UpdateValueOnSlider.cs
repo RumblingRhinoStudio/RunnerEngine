@@ -1,16 +1,17 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class UpdateValueOnSlider : MonoBehaviour
+[RequireComponent(typeof(Slider))]
+public class UpdateValueOnSlider : UpdateValueOnUI
 {
 
     #region Properties
 
-    [SerializeField]
     private Slider _slider;
     private Slider slider
     {
         get { return _slider; }
+        set { _slider = value; }
     }
 
     [SerializeField]
@@ -25,9 +26,9 @@ public class UpdateValueOnSlider : MonoBehaviour
 
     #region MonoBehaviour Messages
 
-    private void Start()
+    private void Awake()
     {
-        UpdateValue();
+        slider = gameObject.GetComponent<Slider>();
     }
 
     #endregion
@@ -35,7 +36,7 @@ public class UpdateValueOnSlider : MonoBehaviour
 
     #region Public Methods
 
-    public void UpdateValue()
+    public override void UpdateValue()
     {
         slider.value = value.UseConstant ? value.ConstantValue : value.Variable.Value;
     }

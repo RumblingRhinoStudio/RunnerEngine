@@ -10,8 +10,8 @@ using System.Collections;
  * - CURRENTLY DOING: Setting GameEvent up so it uses UnityEvent.
  */
 
-[CreateAssetMenu(fileName = "Settings Item", menuName = "Settings/Settings Float Item", order = 0)]
-public class SettingsFloatItem : SettingsItem
+[CreateAssetMenu(fileName = "SettingsFloatItem", menuName = "Settings/Settings Float Item", order = 0)]
+public class SettingsFloatItem : SettingsItem<float>
 {
 
     #region Properties
@@ -28,25 +28,18 @@ public class SettingsFloatItem : SettingsItem
 
     #region Public Methods
 
-    public void SetValue(float value)
+    public override void SetValue(float value)
     {
         _value.Variable.SetValue(value);        
         Database.SaveString(databaseKeyName, value.ToString());
         valueChangedEvent.Raise();
     }
 
-    public void LoadPersistedValue()
+    public override void LoadPersistedValue()
     {
         string persistedValue = Database.GetString(databaseKeyName);
         Value.Variable.Value = Value.ConstantValue = float.Parse(!string.IsNullOrWhiteSpace(persistedValue) ? persistedValue : "0");
     }
-
-    #endregion
-
-
-    #region MonoBehaviour Messages
-
-
 
     #endregion
 

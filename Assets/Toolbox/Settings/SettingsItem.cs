@@ -9,7 +9,7 @@ using System.Collections;
  */
 
 [CreateAssetMenu(fileName = "Settings Item", menuName = "Settings/Settings Item", order = 0)]
-public class SettingsItem : ScriptableObject
+public class SettingsItem<T> : ScriptableObject
 {
     #region Properties
 
@@ -42,6 +42,24 @@ public class SettingsItem : ScriptableObject
 
     [SerializeField]
     protected GameEvent valueChangedEvent;
+
+    #endregion
+
+
+    #region MonoBehaviour Messages
+
+    protected virtual void OnEnable(){
+        LoadPersistedValue();
+    }
+
+    #endregion
+
+
+    #region Virtual Methods
+
+    public virtual void SetValue(T value) { }
+
+    public virtual void LoadPersistedValue() { }
 
     #endregion
 }

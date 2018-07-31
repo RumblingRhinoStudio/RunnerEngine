@@ -30,9 +30,12 @@ public class AudioVolumeController : MonoBehaviour
 
     #region MonoBehaviour Messages
 
+    private void Awake(){
+        _audioSource = gameObject.GetComponent<AudioSource>();
+    }
+
     private void Start()
     {
-        _audioSource = gameObject.GetComponent<AudioSource>();
         UpdateVolume();
     }
 
