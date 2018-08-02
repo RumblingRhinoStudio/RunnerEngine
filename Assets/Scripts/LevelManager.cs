@@ -21,7 +21,7 @@ public class LevelManager : MonoBehaviour
 
     [Header("Enemy settings")]
     public int RowsBeforeEnemies;
-    public int EnemiesPerDifficulty;
+    public int EnemiesPerLevelMatrix;
 
     [Header("Variables")]
     public FloatReference Difficulty;
@@ -87,9 +87,13 @@ public class LevelManager : MonoBehaviour
             for (int i = idleEnemies.Count - 1; i >= 0; i--)
             {
                 EnemyBehaviour enemy = idleEnemies[i];
-                if (enemy.PlayerInRange(playerTransform))
+                if (enemy == null || enemy.gameObject == null)
                 {
-                    enemy.ChangeToPursuit();
+                    idleEnemies.RemoveAt(i);
+                }
+                else if (enemy.PlayerInRange(playerTransform))
+                {
+                    enemy.ChangeToPursuit(playerTransform);
                     idleEnemies.RemoveAt(i);
                 }
             }
@@ -296,11 +300,13 @@ public class LevelManager : MonoBehaviour
             //Remember to build NavMesh before creating enemies to be able to use Nav Mesh Agent
             levelNavMeshSurface.BuildNavMesh();
 
-            // Place enemies before calculatiung the currentDifficultySize
+            // Place enemies before calculating the currentDifficultySize
             if (EnemyObjects.Enemies.Any())
             {
                 placeEnemies();
             }
+
+            //StartCoroutine(test());
 
             currentDifficultySize += levelBlocksHeight;
 
@@ -335,7 +341,7 @@ public class LevelManager : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < EnemiesPerDifficulty; i++)
+        for (int i = 0; i < EnemiesPerLevelMatrix; i++)
         {
             if (possibleEnemyLocations.Any())
             {
@@ -343,10 +349,14 @@ public class LevelManager : MonoBehaviour
                 possibleEnemyLocations.Remove(enemyBlock);
                 Enemy enemyToPlace = findFittingEnemy();
                 GameObject enemy = Instantiate(enemyToPlace.Prefab);
+                NavMeshAgent agent = enemy.GetComponent<NavMeshAgent>();
+                agent.enabled = false;
                 EnemyBehaviour enemyBehaviour = enemy.GetComponent<EnemyBehaviour>();
                 enemyToPlace.SetVariablesForDifficultyLevel(enemyBehaviour, Difficulty);
                 enemy.transform.position = new Vector3(enemyBlock.transform.position.x, enemy.transform.position.y, enemyBlock.transform.position.z);
                 idleEnemies.Add(enemyBehaviour);
+                enemyBehaviour.LevelManager = this;
+                agent.enabled = true;
             }
             else
             {
@@ -397,5 +407,13 @@ public class LevelManager : MonoBehaviour
     private int getNewDifficultyLevelLength()
     {
         return Random.Range(DifficultyMinLength, DifficultyMaxLength);
+    }
+
+    public void RemoveKilledEnemy(EnemyBehaviour killedEnemy)
+    {
+        if (idleEnemies.Contains(killedEnemy))
+        {
+            idleEnemies.Remove(killedEnemy);
+        }
     }
 }

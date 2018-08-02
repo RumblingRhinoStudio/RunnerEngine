@@ -7,11 +7,11 @@ public class AIPursuit : EnemyAI
 {
     public override void Initialise(GameObject enemy)
     {
-        throw new System.NotImplementedException();
+        
     }
 
-    public override void SetDestination(NavMeshAgent agent, Vector3 position)
+    public override void SetDestination(NavMeshAgent agent, Vector3 position, Transform target)
     {
-        throw new System.NotImplementedException();
+        agent.SetDestination(target.position);
     }
 }

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Name: Enemy 2
   m_EditorClassIdentifier: 
   Prefab: {fileID: 1839068848866618, guid: 7baacd62e5b43bb4d8d2c8c988b2731f, type: 2}
-  InitialHealth: 20
+  InitialHealth: 2
   InitialDamage: 2
-  InitialSpeed: 7
-  ViewingRange: 0
+  InitialSpeed: 12
+  ViewingRange: 50
   HealthFormula: {fileID: 11400000, guid: 9de4c4e633424f0448a5604a2a42567f, type: 2}
   DamageFormula: {fileID: 11400000, guid: 7203a13043543b04e9fb0d8399344da3, type: 2}
   SpeedFormula: {fileID: 11400000, guid: 50a84878e7b970149ba472716e80f2d8, type: 2}

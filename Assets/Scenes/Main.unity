@@ -235,17 +235,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LevelMatrixWidth: 9
-  LevelMatrixHeight: 20
+  LevelMatrixHeight: 9
   LevelMatrixRoadLane: 4
   RowsLeftBeforeNextPart: 3
-  DifficultyMinLength: 10
-  DifficultyMaxLength: 10
+  DifficultyMinLength: 15
+  DifficultyMaxLength: 18
   MinRowsNoSideRoads: 4
   RowsBeforeEnemies: 5
-  EnemiesPerDifficulty: 10
-  HealthFormula: {fileID: 11400000, guid: 9de4c4e633424f0448a5604a2a42567f, type: 2}
-  DamageFormula: {fileID: 11400000, guid: 7203a13043543b04e9fb0d8399344da3, type: 2}
-  SpeedFormula: {fileID: 11400000, guid: 50a84878e7b970149ba472716e80f2d8, type: 2}
+  EnemiesPerLevelMatrix: 10
   Difficulty:
     UseConstant: 0
     ConstantValue: 0

@@ -17,18 +17,21 @@ public class EnemyBehaviour : MonoBehaviour
     public EnemyAI AIIdle { get; set; }
     public EnemyAI AIPursuit { get; set; }
     public EnemyAI AICurrent { get; set; }
-    
-    private float timer;
+
+    public LevelManager LevelManager { get; set; }
+
     private NavMeshAgent agent;
+    private Transform target;
 
     public void Start()
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
+        agent.speed = Speed;
     }
 
     public void Update()
     {
-        AICurrent.SetDestination(agent, transform.position);
+        AICurrent.SetDestination(agent, transform.position, target);
     }
 
     public void TakeDamage(float damage)
@@ -36,18 +39,20 @@ public class EnemyBehaviour : MonoBehaviour
         Health -= damage;
         if (Health <= 0)
         {
-            // Die
+            // Die hard
             Destroy(gameObject);
+            LevelManager.RemoveKilledEnemy(this);
         }
     }
 
     public bool PlayerInRange(Transform player)
     {
-        return false;
+        return Vector3.Distance(player.position, transform.position) < ViewingRange;
     }
 
-    public void ChangeToPursuit()
+    public void ChangeToPursuit(Transform target)
     {
+        this.target = target;
         AICurrent = AIPursuit;
     }
 }

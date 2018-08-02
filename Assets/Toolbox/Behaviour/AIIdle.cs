@@ -15,7 +15,7 @@ public class AIIdle : EnemyAI
     {
     }
 
-    public override void SetDestination(NavMeshAgent agent, Vector3 position)
+    public override void SetDestination(NavMeshAgent agent, Vector3 position, Transform target)
     {
         timer += Time.deltaTime;
 
