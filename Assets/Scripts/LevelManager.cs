@@ -9,28 +9,7 @@ using System.Text;
 
 public class LevelManager : MonoBehaviour
 {
-    [Header("Level generation settings")]
-    public int LevelMatrixWidth;
-    public int LevelMatrixHeight;
-    [Tooltip("0 based index.")]
-    public int LevelMatrixRoadLane;
-    public int RowsLeftBeforeNextPart;
-    public int DifficultyMinLength;
-    public int DifficultyMaxLength;
-    public int MinRowsNoSideRoads;
-
-    [Header("Enemy settings")]
-    public int RowsBeforeEnemies;
-    public int EnemiesPerLevelMatrix;
-
-    [Header("Variables")]
-    public FloatReference Difficulty;
-
-    [Header("Building blocks")]
-    public GroundList GroundObjects;
-    public RoadList RoadObjects;
-    public DividerList DividerObjects;
-    public EnemyList EnemyObjects;
+    public RunnerLevelSettings Settings;
 
     private List<GameObject> groundObjectsInUse = new List<GameObject>();
     private List<GameObject> roadObjectsInUse = new List<GameObject>();
@@ -58,7 +37,7 @@ public class LevelManager : MonoBehaviour
         levelParentTransform = Level.transform;
         levelNavMeshSurface = Level.GetComponent<NavMeshSurface>();
 
-        foreach (Ground ground in GroundObjects.Grounds)
+        foreach (Ground ground in Settings.GroundObjects.Grounds)
         {
             ground.Initialise();
             if (ground.Height > biggestBlockHeight || ground.CanBeRotated && ground.Width > biggestBlockHeight)
@@ -66,11 +45,11 @@ public class LevelManager : MonoBehaviour
                 biggestBlockHeight = ground.CanBeRotated ? Mathf.Max(ground.Height, ground.Width) : ground.Height;
             }
         }
-        foreach (Road road in RoadObjects.Roads)
+        foreach (Road road in Settings.RoadObjects.Roads)
         {
             road.Initialise();
         }
-        foreach (Divider divider in DividerObjects.Dividers)
+        foreach (Divider divider in Settings.DividerObjects.Dividers)
         {
             divider.Initialise();
         }
@@ -104,28 +83,28 @@ public class LevelManager : MonoBehaviour
     private void placeGround()
     {
         // TODO : Change if to build next part of level sooner
-        if (!placingGround && (levelBlocks == null || playerTransform.position.z >= lastRowPlacedZ - (RowsLeftBeforeNextPart * 10)))
+        if (!placingGround && (levelBlocks == null || playerTransform.position.z >= lastRowPlacedZ - (Settings.RowsLeftBeforeNextPart * 10)))
         {
             placingGround = true;
-            int currentIterationHeight = Math.Min(LevelMatrixHeight, currentDifficultyTargetSize - currentDifficultySize);
-            GroundBlock[,] levelBlocksTemp = new GroundBlock[LevelMatrixWidth, currentIterationHeight];
+            int currentIterationHeight = Math.Min(Settings.LevelMatrixHeight, currentDifficultyTargetSize - currentDifficultySize);
+            GroundBlock[,] levelBlocksTemp = new GroundBlock[Settings.LevelMatrixWidth, currentIterationHeight];
             int currentMatrixLevel = 0;
 
             int currentMatrixRoadLevel = currentMatrixLevel;
             float lastPlacedRoadRowZ = lastRowPlacedZ;
             int rowsSinceLastSideRoad = 0;
-            while (levelBlocksTemp[LevelMatrixRoadLane, currentIterationHeight - 1] == null)
+            while (levelBlocksTemp[Settings.LevelMatrixRoadLane, currentIterationHeight - 1] == null)
             {
                 // Figure out what size road we are going for
                 int emptySpacesLeft = 0;
                 int emptySpacesRight = 0;
-                for (int i = LevelMatrixRoadLane - 1; i >= 0; i--)
+                for (int i = Settings.LevelMatrixRoadLane - 1; i >= 0; i--)
                 {
                     if (levelBlocksTemp[i, currentMatrixRoadLevel] != null) break;
 
                     emptySpacesLeft++;
                 }
-                for (int i = LevelMatrixRoadLane + 1; i < LevelMatrixWidth; i++)
+                for (int i = Settings.LevelMatrixRoadLane + 1; i < Settings.LevelMatrixWidth; i++)
                 {
                     if (levelBlocksTemp[i, currentMatrixRoadLevel] != null) break;
 
@@ -148,7 +127,7 @@ public class LevelManager : MonoBehaviour
                 {
                     for (int j = 0; j < toPlace.Pieces.GetLength(1); j++)
                     {
-                        levelBlocksTemp[LevelMatrixRoadLane - toPlace.IndexAnchorStart.Item1 + i, j + currentMatrixRoadLevel] = toPlace.Pieces[i, j];
+                        levelBlocksTemp[Settings.LevelMatrixRoadLane - toPlace.IndexAnchorStart.Item1 + i, j + currentMatrixRoadLevel] = toPlace.Pieces[i, j];
                     }
                 }
 
@@ -176,7 +155,7 @@ public class LevelManager : MonoBehaviour
                 {
                     column = 0;
                     // Iterate over each cell in the current row
-                    for (; column < LevelMatrixWidth; column++)
+                    for (; column < Settings.LevelMatrixWidth; column++)
                     {
                         if (levelBlocksTemp[column, row] == null)
                         {
@@ -199,13 +178,13 @@ public class LevelManager : MonoBehaviour
 
                 // Find possible empty rectangles to put new block in
                 List<Tuple<int, int>> emptyRectangles = new List<Tuple<int, int>>();
-                int maxWidth = LevelMatrixWidth - column;
+                int maxWidth = Settings.LevelMatrixWidth - column;
                 int maxHeight = 0;
                 bool done = false;
                 for (int j = row; j < Mathf.Min(biggestBlockHeight + row, currentIterationHeight); j++)
                 {
                     int rowWidth = 0;
-                    for (int i = column; i < LevelMatrixWidth; i++)
+                    for (int i = column; i < Settings.LevelMatrixWidth; i++)
                     {
                         if (levelBlocksTemp[i, j] != null)
                         {
@@ -267,19 +246,19 @@ public class LevelManager : MonoBehaviour
                 switch (chosenRotation)
                 {
                     case 0:
-                        placedGround.transform.position = new Vector3((column - LevelMatrixRoadLane + groundToPlace.IndexCenter.Item1) * 10, 0, lastRowPlacedZ + (row + 1) * 10);
+                        placedGround.transform.position = new Vector3((column - Settings.LevelMatrixRoadLane + groundToPlace.IndexCenter.Item1) * 10, 0, lastRowPlacedZ + (row + 1) * 10);
                         break;
                     case 90:
                         placedGround.transform.Rotate(Vector3.up, 90);
-                        placedGround.transform.position = new Vector3((column - LevelMatrixRoadLane) * 10, 0, lastRowPlacedZ + (row + 1 + groundToPlace.Width - 1 - groundToPlace.IndexCenter.Item1) * 10);
+                        placedGround.transform.position = new Vector3((column - Settings.LevelMatrixRoadLane) * 10, 0, lastRowPlacedZ + (row + 1 + groundToPlace.Width - 1 - groundToPlace.IndexCenter.Item1) * 10);
                         break;
                     case 180:
                         placedGround.transform.Rotate(Vector3.up, 180);
-                        placedGround.transform.position = new Vector3((column - LevelMatrixRoadLane + groundToPlace.Width - 1 - groundToPlace.IndexCenter.Item1) * 10, 0, lastRowPlacedZ + (row + 1 + groundToPlace.Height - 1) * 10);
+                        placedGround.transform.position = new Vector3((column - Settings.LevelMatrixRoadLane + groundToPlace.Width - 1 - groundToPlace.IndexCenter.Item1) * 10, 0, lastRowPlacedZ + (row + 1 + groundToPlace.Height - 1) * 10);
                         break;
                     case 270:
                         placedGround.transform.Rotate(Vector3.up, 270);
-                        placedGround.transform.position = new Vector3((column - LevelMatrixRoadLane + groundToPlace.Height - 1) * 10, 0, lastRowPlacedZ + (row + 1 + groundToPlace.IndexCenter.Item1) * 10);
+                        placedGround.transform.position = new Vector3((column - Settings.LevelMatrixRoadLane + groundToPlace.Height - 1) * 10, 0, lastRowPlacedZ + (row + 1 + groundToPlace.IndexCenter.Item1) * 10);
                         break;
                 }
 
@@ -301,7 +280,7 @@ public class LevelManager : MonoBehaviour
             levelNavMeshSurface.BuildNavMesh();
 
             // Place enemies before calculating the currentDifficultySize
-            if (EnemyObjects.Enemies.Any())
+            if (Settings.EnemyObjects.Enemies.Any())
             {
                 placeEnemies();
             }
@@ -331,7 +310,7 @@ public class LevelManager : MonoBehaviour
         for (int i = 0; i < levelBlocks.GetLength(0); i++)
         {
             // Rows
-            for (int j = Math.Max(0, RowsBeforeEnemies - currentDifficultySize); j < levelBlocks.GetLength(1); j++)
+            for (int j = Math.Max(0, Settings.RowsBeforeEnemies - currentDifficultySize); j < levelBlocks.GetLength(1); j++)
             {
                 GroundBlock currentBlock = levelBlocks[i, j];
                 if (currentBlock.CanHoldEnemy)
@@ -341,7 +320,7 @@ public class LevelManager : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < EnemiesPerLevelMatrix; i++)
+        for (int i = 0; i < Settings.EnemiesPerLevelMatrix; i++)
         {
             if (possibleEnemyLocations.Any())
             {
@@ -352,7 +331,7 @@ public class LevelManager : MonoBehaviour
                 NavMeshAgent agent = enemy.GetComponent<NavMeshAgent>();
                 agent.enabled = false;
                 EnemyBehaviour enemyBehaviour = enemy.GetComponent<EnemyBehaviour>();
-                enemyToPlace.SetVariablesForDifficultyLevel(enemyBehaviour, Difficulty);
+                enemyToPlace.SetVariablesForDifficultyLevel(enemyBehaviour, Settings.Difficulty);
                 enemy.transform.position = new Vector3(enemyBlock.transform.position.x, enemy.transform.position.y, enemyBlock.transform.position.z);
                 idleEnemies.Add(enemyBehaviour);
                 enemyBehaviour.LevelManager = this;
@@ -367,9 +346,9 @@ public class LevelManager : MonoBehaviour
 
     private void placeDivider()
     {
-        if (DividerObjects.Dividers.Any())
+        if (Settings.DividerObjects.Dividers.Any())
         {
-            Divider dividerToPlace = DividerObjects.Dividers[Random.Range(0, DividerObjects.Dividers.Length)];
+            Divider dividerToPlace = Settings.DividerObjects.Dividers[Random.Range(0, Settings.DividerObjects.Dividers.Length)];
             GameObject divider = Instantiate(dividerToPlace.Prefab);
             divider.transform.position = new Vector3(divider.transform.position.x, 0, lastRowPlacedZ + 10);
             lastRowPlacedZ += dividerToPlace.Height * 10;
@@ -379,12 +358,12 @@ public class LevelManager : MonoBehaviour
     private Enemy findFittingEnemy()
     {
         // TODO : Make enemies selected be dependent on difficulty
-        return EnemyObjects.Enemies[Random.Range(0, EnemyObjects.Enemies.Length)];
+        return Settings.EnemyObjects.Enemies[Random.Range(0, Settings.EnemyObjects.Enemies.Length)];
     }
 
     private Ground findFittingGround(List<Tuple<int, int>> emptyRectangles)
     {
-        Ground[] usableGrounds = GroundObjects.Grounds
+        Ground[] usableGrounds = Settings.GroundObjects.Grounds
                                .Where(x => emptyRectangles
                                            .Any(y => y.Item1 >= x.Width && y.Item2 >= x.Height
                                                   || x.CanBeRotated && y.Item1 >= x.Height && y.Item2 >= x.Width)).ToArray();
@@ -395,9 +374,9 @@ public class LevelManager : MonoBehaviour
 
     private Road findFittingRoad(int spacesLeft, int spacesRight, int maxHeight, int rowsSinceLastSideRoad)
     {
-        Road[] usableRoads = RoadObjects.Roads
+        Road[] usableRoads = Settings.RoadObjects.Roads
                                .Where(x => x.IndexAnchorStart.Item1 <= spacesLeft
-                                        && x.Width <= (rowsSinceLastSideRoad >= MinRowsNoSideRoads ? spacesLeft - (spacesLeft - x.IndexAnchorStart.Item1) + 1 + spacesRight : 1)
+                                        && x.Width <= (rowsSinceLastSideRoad >= Settings.MinRowsNoSideRoads ? spacesLeft - (spacesLeft - x.IndexAnchorStart.Item1) + 1 + spacesRight : 1)
                                         && x.Height <= maxHeight).ToArray();
         if (!usableRoads.Any()) return null;
 
@@ -406,7 +385,7 @@ public class LevelManager : MonoBehaviour
 
     private int getNewDifficultyLevelLength()
     {
-        return Random.Range(DifficultyMinLength, DifficultyMaxLength);
+        return Random.Range(Settings.DifficultyMinLength, Settings.DifficultyMaxLength);
     }
 
     public void RemoveKilledEnemy(EnemyBehaviour killedEnemy)

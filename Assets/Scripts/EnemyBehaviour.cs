@@ -34,7 +34,7 @@ public class EnemyBehaviour : MonoBehaviour
         AICurrent.SetDestination(agent, transform.position, target);
     }
 
-    public void TakeDamage(float damage)
+    public bool TakeDamage(float damage)
     {
         Health -= damage;
         if (Health <= 0)
@@ -42,7 +42,9 @@ public class EnemyBehaviour : MonoBehaviour
             // Die hard
             Destroy(gameObject);
             LevelManager.RemoveKilledEnemy(this);
+            return true;
         }
+        return false;
     }
 
     public bool PlayerInRange(Transform player)

@@ -4,30 +4,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public bool IsDead = false;
-
-    [SerializeField]
-    private float movementSpeed;
-    [SerializeField]
-    GameObject projectile;
+    public bool IsDead = false;    
+    public FloatReference MovementSpeed;
+    public RunnerPlayerWeapon Weapon;
 
     private bool isMoving = false;
     private bool isAttacking = false;
     private bool isAttackReloading = false;
     private bool isDying = false;
-
-    private static PlayerMovement _instance;
-    public static PlayerMovement Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = FindObjectOfType<PlayerMovement>();
-            }
-            return _instance;
-        }
-    }
 
     // Update is called once per frame
     void Update()
@@ -43,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isMoving)
         {
-            this.transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
+            this.transform.Translate(Vector3.forward * MovementSpeed.Value * Time.deltaTime);
         }
     }
 
@@ -58,9 +42,13 @@ public class PlayerMovement : MonoBehaviour
                 {
                     isAttacking = true;
                     isAttackReloading = true;
-                    GameObject currentProjectile = Instantiate(projectile, transform.position + Vector3.forward * 1.5f, Quaternion.identity);
+                    GameObject currentProjectile = Instantiate(Weapon.Prefab, transform.position + Vector3.forward * 1.5f, Quaternion.identity);
                     currentProjectile.transform.LookAt(target.transform.position);
                     ProjectileBehaviour projectileBehaviour = currentProjectile.GetComponent<ProjectileBehaviour>();
+                    projectileBehaviour.Speed = Weapon.Speed;
+                    projectileBehaviour.Damage = Weapon.Damage.Value;
+                    projectileBehaviour.PierceEnemy = Weapon.PierceEnemy;
+                    projectileBehaviour.stickToTarget = Weapon.StickToTarget;
                     projectileBehaviour.Target = target;
                     StartCoroutine(resetAttack());
                 }

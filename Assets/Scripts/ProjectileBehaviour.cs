@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class ProjectileBehaviour : MonoBehaviour
 {
-    public float ProjectileSpeed = 10;
+    [ReadOnly]
+    public float Speed = 10;
+    [ReadOnly]
     public float Damage = 1;
+    [ReadOnly]
     public bool PierceEnemy = false;
+    [ReadOnly]
     public Transform Target;
+    [ReadOnly]
+    public bool stickToTarget;
     private Vector3 currentTarget;
 
     // Use this for initialization
@@ -22,12 +28,12 @@ public class ProjectileBehaviour : MonoBehaviour
         if (Target != null)
         {
             currentTarget = Target.position - transform.position;
-            transform.Translate(currentTarget.normalized * ProjectileSpeed * Time.deltaTime, Space.World);
+            transform.Translate(currentTarget.normalized * Speed * Time.deltaTime, Space.World);
             transform.LookAt(Target);
         }
         else
         {
-            transform.Translate(currentTarget.normalized * ProjectileSpeed * Time.deltaTime, Space.World);
+            transform.Translate(currentTarget.normalized * Speed * Time.deltaTime, Space.World);
         }
     }
 
@@ -37,8 +43,8 @@ public class ProjectileBehaviour : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             EnemyBehaviour enemy = other.GetComponent<EnemyBehaviour>();
-            enemy.TakeDamage(Damage);
-            if (!PierceEnemy)
+            bool enemyDead = enemy.TakeDamage(Damage);
+            if (!enemyDead && !PierceEnemy && !stickToTarget)
             {
                 Destroy(gameObject);
             }
