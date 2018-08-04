@@ -33,7 +33,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void Update()
     {
-        AICurrent.SetDestination(agent, transform.position, target);
+        AICurrent.SetDestination(agent, transform.position, Speed, target);
     }
 
     public bool TakeDamage(float damage)
