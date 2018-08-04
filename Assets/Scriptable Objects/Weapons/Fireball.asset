@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed:
     UseConstant: 1
-    ConstantValue: 10
+    ConstantValue: 50
     Variable: {fileID: 0}
   Damage:
     UseConstant: 0

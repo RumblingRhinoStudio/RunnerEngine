@@ -27,4 +27,4 @@ MonoBehaviour:
   GroundObjects: {fileID: 11400000, guid: 1d2a4f0dd5c2a3147a6b484a0e87466b, type: 2}
   RoadObjects: {fileID: 11400000, guid: 43823982f019e0d4184a32a34151c5b7, type: 2}
   DividerObjects: {fileID: 11400000, guid: 3e7d0ac8162e7254c8c4cbfeec3274ae, type: 2}
-  EnemyObjects: {fileID: 11400000, guid: c23f1bd44f1521045a88b9a00eaaa7be, type: 2}
+  EnemyObjects: {fileID: 11400000, guid: 60c6e4ee611454efa9af14b8a3cd35a1, type: 2}
