@@ -357,8 +357,8 @@ public class LevelManager : MonoBehaviour
 
     private Enemy findFittingEnemy()
     {
-        // TODO : Make enemies selected be dependent on difficulty
-        return Settings.EnemyObjects.Enemies[Random.Range(0, Settings.EnemyObjects.Enemies.Length)];
+        Enemy[] usableEnemies = Settings.EnemyObjects.Enemies.Where(x => x.MinimumDifficulty < Settings.Difficulty.Value).ToArray();
+        return usableEnemies[Random.Range(0, usableEnemies.Length)];
     }
 
     private Ground findFittingGround(List<Tuple<int, int>> emptyRectangles)

@@ -12,6 +12,8 @@ public class EnemyBehaviour : MonoBehaviour
     [ReadOnly]
     public float Speed;
     [ReadOnly]
+    public float Value;
+    [ReadOnly]
     public float ViewingRange;
 
     public EnemyAI AIIdle { get; set; }
