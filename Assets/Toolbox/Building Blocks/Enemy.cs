@@ -17,6 +17,7 @@ public class Enemy : ScriptableObject
     public DifficultyFormula ValueFormula;
     public EnemyAI IdleAI;
     public EnemyAI PursuitAI;
+    public EnemyGameEvent OnDeathEvent;
 
     public void SetVariablesForDifficultyLevel(EnemyBehaviour enemy, FloatReference difficulty)
     {
@@ -30,6 +31,7 @@ public class Enemy : ScriptableObject
             enemy.AIIdle = IdleAI;
             enemy.AIPursuit = PursuitAI;
             enemy.AICurrent = IdleAI;
+            enemy.OnDeathEvent = OnDeathEvent;
         }
     }
 }

@@ -20,7 +20,7 @@ public class EnemyBehaviour : MonoBehaviour
     public EnemyAI AIPursuit { get; set; }
     public EnemyAI AICurrent { get; set; }
 
-    public LevelManager LevelManager { get; set; }
+    public EnemyGameEvent OnDeathEvent { get; set; }
 
     private NavMeshAgent agent;
     private Transform target;
@@ -43,7 +43,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             // Die hard
             Destroy(gameObject);
-            LevelManager.RemoveKilledEnemy(this);
+            OnDeathEvent.Raise(this);
             return true;
         }
         return false;
