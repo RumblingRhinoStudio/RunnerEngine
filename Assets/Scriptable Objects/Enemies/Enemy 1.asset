@@ -16,7 +16,7 @@ MonoBehaviour:
   InitialDamage: 1
   InitialSpeed: 10
   InitialValue: 5
-  ViewingRange: 20
+  ViewingRange: 100
   MinimumDifficulty: 0
   HealthFormula: {fileID: 11400000, guid: 9de4c4e633424f0448a5604a2a42567f, type: 2}
   DamageFormula: {fileID: 11400000, guid: 7203a13043543b04e9fb0d8399344da3, type: 2}

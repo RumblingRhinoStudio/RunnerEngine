@@ -575,6 +575,17 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: 917100fdc0f23294ba47122dddfb7e05,
         type: 2}
+    - target: {fileID: 114628437569850020, guid: 0ad58543ca4190240a41c0d2443cff19,
+        type: 2}
+      propertyPath: MovementSpeed.UseConstant
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114628437569850020, guid: 0ad58543ca4190240a41c0d2443cff19,
+        type: 2}
+      propertyPath: MovementSpeed.Variable
+      value: 
+      objectReference: {fileID: 11400000, guid: 4b5c1243ea6ead2499674f8cb0e98b2b,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0ad58543ca4190240a41c0d2443cff19, type: 2}
   m_IsPrefabParent: 0

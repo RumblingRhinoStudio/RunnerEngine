@@ -100,6 +100,7 @@ MonoBehaviour:
   Health: 0
   Damage: 0
   Speed: 10
+  Value: 0
   ViewingRange: 0
 --- !u!136 &136223592721802548
 CapsuleCollider:
