@@ -15,7 +15,7 @@ public class AIIdle : EnemyAI
     {
     }
 
-    public override void SetDestination(NavMeshAgent agent, Vector3 position, Transform target)
+    public override void SetDestination(NavMeshAgent agent, Transform transform, float speed, Transform target)
     {
         timer += Time.deltaTime;
 
@@ -23,7 +23,7 @@ public class AIIdle : EnemyAI
         {
             Vector3 randDirection = Random.insideUnitSphere * WanderRadius;
 
-            randDirection += position;
+            randDirection += transform.position;
 
             NavMeshHit navHit;
 

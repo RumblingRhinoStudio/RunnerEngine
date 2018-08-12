@@ -12,13 +12,15 @@ public class EnemyBehaviour : MonoBehaviour
     [ReadOnly]
     public float Speed;
     [ReadOnly]
+    public float Value;
+    [ReadOnly]
     public float ViewingRange;
 
     public EnemyAI AIIdle { get; set; }
     public EnemyAI AIPursuit { get; set; }
     public EnemyAI AICurrent { get; set; }
 
-    public LevelManager LevelManager { get; set; }
+    public EnemyGameEvent OnDeathEvent { get; set; }
 
     private NavMeshAgent agent;
     private Transform target;
@@ -31,7 +33,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void Update()
     {
-        AICurrent.SetDestination(agent, transform.position, target);
+        AICurrent.SetDestination(agent, transform, Speed, target);
     }
 
     public bool TakeDamage(float damage)
@@ -41,7 +43,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             // Die hard
             Destroy(gameObject);
-            LevelManager.RemoveKilledEnemy(this);
+            OnDeathEvent.Raise(this);
             return true;
         }
         return false;

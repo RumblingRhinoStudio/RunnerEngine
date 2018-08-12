@@ -334,7 +334,6 @@ public class LevelManager : MonoBehaviour
                 enemyToPlace.SetVariablesForDifficultyLevel(enemyBehaviour, Settings.Difficulty);
                 enemy.transform.position = new Vector3(enemyBlock.transform.position.x, enemy.transform.position.y, enemyBlock.transform.position.z);
                 idleEnemies.Add(enemyBehaviour);
-                enemyBehaviour.LevelManager = this;
                 agent.enabled = true;
             }
             else
@@ -357,8 +356,8 @@ public class LevelManager : MonoBehaviour
 
     private Enemy findFittingEnemy()
     {
-        // TODO : Make enemies selected be dependent on difficulty
-        return Settings.EnemyObjects.Enemies[Random.Range(0, Settings.EnemyObjects.Enemies.Length)];
+        Enemy[] usableEnemies = Settings.EnemyObjects.Enemies.Where(x => x.MinimumDifficulty < Settings.Difficulty.Value).ToArray();
+        return usableEnemies[Random.Range(0, usableEnemies.Length)];
     }
 
     private Ground findFittingGround(List<Tuple<int, int>> emptyRectangles)
@@ -388,11 +387,11 @@ public class LevelManager : MonoBehaviour
         return Random.Range(Settings.DifficultyMinLength, Settings.DifficultyMaxLength);
     }
 
-    public void RemoveKilledEnemy(EnemyBehaviour killedEnemy)
+    public void RemoveEnemyFromIdle(EnemyBehaviour enemy)
     {
-        if (idleEnemies.Contains(killedEnemy))
+        if (idleEnemies.Contains(enemy))
         {
-            idleEnemies.Remove(killedEnemy);
+            idleEnemies.Remove(enemy);
         }
     }
 }
