@@ -44,10 +44,18 @@ public class ProjectileBehaviour : MonoBehaviour
         {
             EnemyBehaviour enemy = other.GetComponent<EnemyBehaviour>();
             bool enemyDead = enemy.TakeDamage(Damage);
-            if (!enemyDead && !PierceEnemy && !stickToTarget)
+            if (!PierceEnemy && !stickToTarget)
             {
                 Destroy(gameObject);
             }
+            else if (PierceEnemy)
+            {
+                Target = null;
+            }
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 }

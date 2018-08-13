@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Name: RunnerLevelSettings
   m_EditorClassIdentifier: 
   LevelMatrixWidth: 9
-  LevelMatrixHeight: 10
+  LevelMatrixHeight: 15
   LevelMatrixRoadLane: 4
   RowsLeftBeforeNextPart: 3
-  DifficultyMinLength: 15
-  DifficultyMaxLength: 20
+  DifficultyMinLength: 50
+  DifficultyMaxLength: 70
   MinRowsNoSideRoads: 2
   RowsBeforeEnemies: 5
   EnemiesPerLevelMatrix: 10
@@ -28,3 +28,5 @@ MonoBehaviour:
   RoadObjects: {fileID: 11400000, guid: 43823982f019e0d4184a32a34151c5b7, type: 2}
   DividerObjects: {fileID: 11400000, guid: 3e7d0ac8162e7254c8c4cbfeec3274ae, type: 2}
   EnemyObjects: {fileID: 11400000, guid: c23f1bd44f1521045a88b9a00eaaa7be, type: 2}
+  DifficultyIncreaseEvent: {fileID: 11400000, guid: 1434f6071acd0c04ba3489b6a632a7fd,
+    type: 2}

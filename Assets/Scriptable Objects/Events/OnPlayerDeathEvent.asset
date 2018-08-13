@@ -8,8 +8,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9372d26f46d5404b8cb469d3d7d1af6, type: 3}
-  m_Name: Difficulty
+  m_Script: {fileID: 11500000, guid: 18278ce1e198a864aa97312d8f2c89f3, type: 3}
+  m_Name: OnPlayerDeathEvent
   m_EditorClassIdentifier: 
-  DeveloperDescription: This is used to track the difficulty level of the game
-  Value: 1

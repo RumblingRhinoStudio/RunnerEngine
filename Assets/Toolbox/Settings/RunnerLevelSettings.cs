@@ -26,4 +26,7 @@ public class RunnerLevelSettings : ScriptableObject
     public RoadList RoadObjects;
     public DividerList DividerObjects;
     public EnemyList EnemyObjects;
+
+    [Header("Events")]
+    public FloatGameEvent DifficultyIncreaseEvent;
 }

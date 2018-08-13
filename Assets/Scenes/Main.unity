@@ -207,6 +207,44 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 10, y: 0, z: 0}
+--- !u!1 &474736998 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1170506751765390, guid: 0ad58543ca4190240a41c0d2443cff19,
+    type: 2}
+  m_PrefabInternal: {fileID: 1898579999}
+--- !u!114 &474736999 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114628437569850020, guid: 0ad58543ca4190240a41c0d2443cff19,
+    type: 2}
+  m_PrefabInternal: {fileID: 1898579999}
+  m_Script: {fileID: 11500000, guid: b981b19af8c1a0344965825d598a78ad, type: 3}
+--- !u!114 &474737005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 474736998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8f547bb1888eaa45a0a2c8eade1323f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 03429768e096d7b40862efe6ff66f984, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 474736999}
+        m_MethodName: TakeDamage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: FloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1 &1223293133
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,6 +255,7 @@ GameObject:
   - component: {fileID: 1223293135}
   - component: {fileID: 1223293134}
   - component: {fileID: 1223293136}
+  - component: {fileID: 1223293137}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -260,7 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f22d121bb849049ba7c2630946462c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: c4a47e240f4d34e4aabe8fa107e31530, type: 2}
+  Event: {fileID: 11400000, guid: 58b5137f5f61aa542870c7c7ceae79ab, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:
@@ -277,6 +316,33 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: EnemyBehaviourEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+--- !u!114 &1223293137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1223293133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8f547bb1888eaa45a0a2c8eade1323f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 1434f6071acd0c04ba3489b6a632a7fd, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1223293134}
+        m_MethodName: IncreaseDifficulty
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: FloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1 &1244885062
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,6 +560,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114628437569850020, guid: 0ad58543ca4190240a41c0d2443cff19,
+        type: 2}
+      propertyPath: OnPlayerDeathEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114628437569850020, guid: 0ad58543ca4190240a41c0d2443cff19,
+        type: 2}
+      propertyPath: OnPlayerDamagedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4594575986266448, guid: 0ad58543ca4190240a41c0d2443cff19, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -586,6 +662,80 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: 4b5c1243ea6ead2499674f8cb0e98b2b,
         type: 2}
+    - target: {fileID: 114628437569850020, guid: 0ad58543ca4190240a41c0d2443cff19,
+        type: 2}
+      propertyPath: OnPlayerDeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114628437569850020, guid: 0ad58543ca4190240a41c0d2443cff19,
+        type: 2}
+      propertyPath: OnPlayerDeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114628437569850020, guid: 0ad58543ca4190240a41c0d2443cff19,
+        type: 2}
+      propertyPath: OnPlayerDeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: fd066a1363dd58b44a33bd7654649b61,
+        type: 2}
+    - target: {fileID: 114628437569850020, guid: 0ad58543ca4190240a41c0d2443cff19,
+        type: 2}
+      propertyPath: OnPlayerDeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Raise
+      objectReference: {fileID: 0}
+    - target: {fileID: 114628437569850020, guid: 0ad58543ca4190240a41c0d2443cff19,
+        type: 2}
+      propertyPath: OnPlayerDeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114628437569850020, guid: 0ad58543ca4190240a41c0d2443cff19,
+        type: 2}
+      propertyPath: HP
+      value: 
+      objectReference: {fileID: 11400000, guid: 5cda8e075847aac40875132a6facb1a8,
+        type: 2}
+    - target: {fileID: 114628437569850020, guid: 0ad58543ca4190240a41c0d2443cff19,
+        type: 2}
+      propertyPath: ResetHP
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114628437569850020, guid: 0ad58543ca4190240a41c0d2443cff19,
+        type: 2}
+      propertyPath: StartingHP.UseConstant
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114628437569850020, guid: 0ad58543ca4190240a41c0d2443cff19,
+        type: 2}
+      propertyPath: StartingHP.Variable
+      value: 
+      objectReference: {fileID: 11400000, guid: 8900564325b81a5448dbc42065edfef0,
+        type: 2}
+    - target: {fileID: 114628437569850020, guid: 0ad58543ca4190240a41c0d2443cff19,
+        type: 2}
+      propertyPath: OnPlayerDamagedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114628437569850020, guid: 0ad58543ca4190240a41c0d2443cff19,
+        type: 2}
+      propertyPath: OnPlayerDamagedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114628437569850020, guid: 0ad58543ca4190240a41c0d2443cff19,
+        type: 2}
+      propertyPath: OnPlayerDamagedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: bd0eb6fc373bb48459c2c42f21686089,
+        type: 2}
+    - target: {fileID: 114628437569850020, guid: 0ad58543ca4190240a41c0d2443cff19,
+        type: 2}
+      propertyPath: OnPlayerDamagedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Raise
+      objectReference: {fileID: 0}
+    - target: {fileID: 114628437569850020, guid: 0ad58543ca4190240a41c0d2443cff19,
+        type: 2}
+      propertyPath: OnPlayerDamagedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0ad58543ca4190240a41c0d2443cff19, type: 2}
   m_IsPrefabParent: 0
