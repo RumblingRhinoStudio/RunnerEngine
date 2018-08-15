@@ -27,12 +27,13 @@ public class LevelManager : MonoBehaviour
 
     private float lastRowPlacedZ = 0;
 
-    private GroundBlock[,] levelBlocks;
+    private List<float> difficultyChangeDistances = new List<float>();
 
-    // Use this for initialization
+    private GroundBlock[,] levelBlocks;
+    
     void Start()
     {
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        playerTransform = GameObject.FindGameObjectWithTag("Player")?.transform;
         GameObject Level = GameObject.FindGameObjectWithTag("Level");
         levelParentTransform = Level.transform;
         levelNavMeshSurface = Level.GetComponent<NavMeshSurface>();
@@ -56,10 +57,10 @@ public class LevelManager : MonoBehaviour
         currentDifficultyTargetSize = getNewDifficultyLevelLength();
         placeGround();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
+        checkForDifficultyIncrease();
         placeGround();
         if (idleEnemies.Any())
         {
@@ -82,7 +83,6 @@ public class LevelManager : MonoBehaviour
 
     private void placeGround()
     {
-        // TODO : Change if to build next part of level sooner
         if (!placingGround && (levelBlocks == null || playerTransform.position.z >= lastRowPlacedZ - (Settings.RowsLeftBeforeNextPart * 10)))
         {
             placingGround = true;
@@ -285,8 +285,6 @@ public class LevelManager : MonoBehaviour
                 placeEnemies();
             }
 
-            //StartCoroutine(test());
-
             currentDifficultySize += levelBlocksHeight;
 
             if (currentDifficultySize == currentDifficultyTargetSize)
@@ -350,6 +348,9 @@ public class LevelManager : MonoBehaviour
             Divider dividerToPlace = Settings.DividerObjects.Dividers[Random.Range(0, Settings.DividerObjects.Dividers.Length)];
             GameObject divider = Instantiate(dividerToPlace.Prefab);
             divider.transform.position = new Vector3(divider.transform.position.x, 0, lastRowPlacedZ + 10);
+
+            // Make sure we can see when the difficulty should change
+            difficultyChangeDistances.Add(lastRowPlacedZ + 10f);
             lastRowPlacedZ += dividerToPlace.Height * 10;
         }
     }
@@ -387,6 +388,18 @@ public class LevelManager : MonoBehaviour
         return Random.Range(Settings.DifficultyMinLength, Settings.DifficultyMaxLength);
     }
 
+    private void checkForDifficultyIncrease()
+    {
+        if (difficultyChangeDistances.Any(x => playerTransform.position.z > x))
+        {
+            Settings.DifficultyIncreaseEvent.Raise(1);
+            difficultyChangeDistances.RemoveAll(x => x < playerTransform.position.z);
+        }
+    }
+
+
+    #region EventListener Functions
+
     public void RemoveEnemyFromIdle(EnemyBehaviour enemy)
     {
         if (idleEnemies.Contains(enemy))
@@ -394,4 +407,14 @@ public class LevelManager : MonoBehaviour
             idleEnemies.Remove(enemy);
         }
     }
+
+    public void IncreaseDifficulty(float increaseBy)
+    {
+        if (!Settings.Difficulty.UseConstant)
+        {
+            Settings.Difficulty.Variable.Value += increaseBy;
+        }
+    }
+
+    #endregion
 }

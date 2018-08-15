@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class EnemyBehaviour : MonoBehaviour
 {
@@ -20,7 +21,8 @@ public class EnemyBehaviour : MonoBehaviour
     public EnemyAI AIPursuit { get; set; }
     public EnemyAI AICurrent { get; set; }
 
-    public EnemyGameEvent OnDeathEvent { get; set; }
+    public EnemyBehaviourEvent OnDeathEvent { get; set; }
+    public FloatEvent OnPlayerHitEvent { get; set; }
 
     private NavMeshAgent agent;
     private Transform target;
@@ -42,11 +44,19 @@ public class EnemyBehaviour : MonoBehaviour
         if (Health <= 0)
         {
             // Die hard
-            Destroy(gameObject);
-            OnDeathEvent.Raise(this);
+            die();
             return true;
         }
         return false;
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            OnPlayerHitEvent.Invoke(Damage);
+            die();
+        }
     }
 
     public bool PlayerInRange(Transform player)
@@ -58,5 +68,11 @@ public class EnemyBehaviour : MonoBehaviour
     {
         this.target = target;
         AICurrent = AIPursuit;
+    }
+
+    private void die()
+    {
+        Destroy(gameObject);
+        OnDeathEvent.Invoke(this);
     }
 }

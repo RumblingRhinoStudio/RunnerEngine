@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "MyEnemy", menuName = "Toolbox/Building blocks/Enemy", order = 2)]
 public class Enemy : ScriptableObject
@@ -17,7 +18,8 @@ public class Enemy : ScriptableObject
     public DifficultyFormula ValueFormula;
     public EnemyAI IdleAI;
     public EnemyAI PursuitAI;
-    public EnemyGameEvent OnDeathEvent;
+    public EnemyBehaviourEvent OnDeathEvent;
+    public FloatEvent OnPlayerHitEvent;
 
     public void SetVariablesForDifficultyLevel(EnemyBehaviour enemy, FloatReference difficulty)
     {
@@ -32,6 +34,7 @@ public class Enemy : ScriptableObject
             enemy.AIPursuit = PursuitAI;
             enemy.AICurrent = IdleAI;
             enemy.OnDeathEvent = OnDeathEvent;
+            enemy.OnPlayerHitEvent = OnPlayerHitEvent;
         }
     }
 }

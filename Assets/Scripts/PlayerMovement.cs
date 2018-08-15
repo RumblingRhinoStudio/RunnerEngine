@@ -1,19 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public bool IsDead = false;    
+    public bool IsDead = false;
     public FloatReference MovementSpeed;
+    public FloatVariable HP;
+    public bool ResetHP;
+    public FloatReference StartingHP;
     public RunnerPlayerWeapon Weapon;
+    public UnityEvent OnPlayerDamagedEvent;
+    public UnityEvent OnPlayerDeathEvent;
 
     private bool isMoving = false;
     private bool isAttacking = false;
     private bool isAttackReloading = false;
     private bool isDying = false;
 
-    // Update is called once per frame
+    private void Start()
+    {
+        if (ResetHP)
+        {
+            HP.SetValue(StartingHP);
+        }
+    }
+
     void Update()
     {
         if (!isDying && !IsDead)
@@ -81,4 +94,19 @@ public class PlayerMovement : MonoBehaviour
             isMoving = true;
         }
     }
+
+    #region EventListener Functions
+    public void TakeDamage(float damage)
+    {
+        if (damage > 0)
+        {
+            HP.ApplyChange(-damage);
+            OnPlayerDamagedEvent.Invoke();
+        }
+        if (HP.Value <= 0)
+        {
+            OnPlayerDeathEvent.Invoke();
+        }
+    }
+    #endregion
 }
