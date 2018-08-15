@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f2cac4593bf3614aab1b8ca773c23f5, type: 3}
+  m_Name: RoadsForTest
+  m_EditorClassIdentifier: 
+  Roads:
+  - {fileID: 11400000, guid: b84fee8db5c3d1644bc208eda6d4ec52, type: 2}
+  - {fileID: 11400000, guid: aa76a970779ad3a43b6b87f20169d223, type: 2}
+  - {fileID: 11400000, guid: 84af092210cf2ee49921ef8d6cb14cde, type: 2}
+  - {fileID: 11400000, guid: ead3124eba9ec014c88edf51817c42a3, type: 2}
+  - {fileID: 11400000, guid: 796ecc45af095904d88042badecd6213, type: 2}
+  - {fileID: 11400000, guid: bb312de4a90dbf04c90e3bb5758bb1c7, type: 2}
+  - {fileID: 11400000, guid: 05b6e81e42027d74a84f95bcdf8088bd, type: 2}

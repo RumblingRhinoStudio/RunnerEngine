@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d19ab56590bc00a4cb70c90c9901367e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Settings: {fileID: 11400000, guid: 8f6d698c9fd5b724ca04897cda603eb6, type: 2}
+  Settings: {fileID: 11400000, guid: 26c67b6f8e41d404b965dad29201d3d4, type: 2}
 --- !u!4 &1223293135
 Transform:
   m_ObjectHideFlags: 0
@@ -327,7 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8f547bb1888eaa45a0a2c8eade1323f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 1434f6071acd0c04ba3489b6a632a7fd, type: 2}
+  Event: {fileID: 11400000, guid: a9e654d4c59f04847838c1bd8bf008b1, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:
