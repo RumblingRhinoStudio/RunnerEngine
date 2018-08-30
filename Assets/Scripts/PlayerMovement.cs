@@ -56,7 +56,13 @@ public class PlayerMovement : MonoBehaviour
                     isAttacking = true;
                     isAttackReloading = true;
                     GameObject currentProjectile = Instantiate(Weapon.Prefab, transform.position + Vector3.forward * 1.5f, Quaternion.identity);
-                    currentProjectile.transform.LookAt(target.transform.position);
+                    Transform currentTransform = currentProjectile.transform;
+                    if (currentTransform.position.y < 1)
+                    {
+                        currentTransform.position = new Vector3(currentTransform.position.x, 1, currentTransform.position.z);
+                    }
+                    currentTransform.parent = this.transform;
+                    currentTransform.LookAt(target.transform.position);
                     ProjectileBehaviour projectileBehaviour = currentProjectile.GetComponent<ProjectileBehaviour>();
                     projectileBehaviour.Speed = Weapon.Speed;
                     projectileBehaviour.Damage = Weapon.Damage.Value;

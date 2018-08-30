@@ -406,15 +406,7 @@ public class LevelManager : MonoBehaviour
         {
             idleEnemies.Remove(enemy);
         }
-    }
-
-    public void IncreaseDifficulty(float increaseBy)
-    {
-        if (!Settings.Difficulty.UseConstant)
-        {
-            Settings.Difficulty.Variable.Value += increaseBy;
-        }
-    }
+    }    
 
     #endregion
 }

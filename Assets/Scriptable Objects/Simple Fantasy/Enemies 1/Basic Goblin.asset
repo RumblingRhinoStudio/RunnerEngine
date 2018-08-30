@@ -15,13 +15,13 @@ MonoBehaviour:
   InitialHealth: 1
   InitialDamage: 1
   InitialSpeed: 10
-  InitialValue: 0
-  ViewingRange: 20
+  InitialValue: 10
+  ViewingRange: 75
   MinimumDifficulty: 0
   HealthFormula: {fileID: 11400000, guid: 9de4c4e633424f0448a5604a2a42567f, type: 2}
   DamageFormula: {fileID: 11400000, guid: 7203a13043543b04e9fb0d8399344da3, type: 2}
   SpeedFormula: {fileID: 11400000, guid: 50a84878e7b970149ba472716e80f2d8, type: 2}
-  ValueFormula: {fileID: 11400000, guid: afc4008b1b1dfeb4ea181cc5a390b6b3, type: 2}
+  ValueFormula: {fileID: 11400000, guid: 50a84878e7b970149ba472716e80f2d8, type: 2}
   IdleAI: {fileID: 11400000, guid: 6eb51866d97033f489326f84c6f7c8de, type: 2}
   PursuitAI: {fileID: 11400000, guid: 2ba7526d9e1874f4bb4b6a3e45fca081, type: 2}
   OnDeathEvent:

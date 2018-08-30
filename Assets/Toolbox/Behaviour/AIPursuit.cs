@@ -14,8 +14,27 @@ public class AIPursuit : EnemyAI
 
     public override void SetDestination(NavMeshAgent agent, Transform transform, float speed, Transform target)
     {
-        Vector3 point = CalculateInterceptPoint(target.position, (target.position + (Vector3.forward * PlayerSpeed.Value * Time.deltaTime)) - target.position, transform.position, speed * Time.deltaTime);
-        agent.SetDestination(point + Vector3.forward);
+        if (!agent.isStopped)
+        {
+            // Check to see if we are too far behind the player
+            if (target.position.z - transform.position.z < 3)
+            {
+                Vector3 point = CalculateInterceptPoint(target.position, (target.position + (Vector3.forward * PlayerSpeed.Value * Time.deltaTime)) - target.position, transform.position, speed * Time.deltaTime);
+                // Trying to make them come in front of the player
+                if (Vector3.Distance(transform.position, target.position) < 5)
+                {
+                    agent.SetDestination(point + Vector3.forward);
+                }
+                else
+                {
+                    agent.SetDestination(point + Vector3.forward * 3);
+                }
+            }
+            else
+            {
+                agent.isStopped = true;
+            }
+        }
     }
 
 

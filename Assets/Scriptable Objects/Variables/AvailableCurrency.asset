@@ -8,10 +8,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f21c57be66010841ad6f5480b5f1628, type: 3}
-  m_Name: SpeedEquation
+  m_Script: {fileID: 11500000, guid: f9372d26f46d5404b8cb469d3d7d1af6, type: 3}
+  m_Name: AvailableCurrency
   m_EditorClassIdentifier: 
-  Description: y = A*x*difficulty + B*difficulty + C*x
-  A: 0
-  B: 0
-  C: 1
+  DeveloperDescription: The current amount of currency the player has available.
+  Value: 0

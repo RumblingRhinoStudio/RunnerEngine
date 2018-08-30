@@ -28,5 +28,5 @@ MonoBehaviour:
   RoadObjects: {fileID: 11400000, guid: 5e2982326bf0c1b4f95e7c3d3a4a474f, type: 2}
   DividerObjects: {fileID: 11400000, guid: 818506d2acdfc6241b8bb754628e8c74, type: 2}
   EnemyObjects: {fileID: 11400000, guid: 1e2278a420ddcbf43aabab08c678d853, type: 2}
-  DifficultyIncreaseEvent: {fileID: 11400000, guid: a9e654d4c59f04847838c1bd8bf008b1,
+  DifficultyIncreaseEvent: {fileID: 11400000, guid: 1434f6071acd0c04ba3489b6a632a7fd,
     type: 2}
